@@ -118,3 +118,7 @@ $RECYCLE.BIN/
 .github.env
 secrets.yml
 secrets.yaml
+
+# nix
+flake.lock
+
