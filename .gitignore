@@ -38,6 +38,7 @@ terraform.rc
 
 # ---> Ansible
 *.retry
+.ansible
 
 # ---> macOS
 # General
