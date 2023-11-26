@@ -1,0 +1,22 @@
+---
+version: 3
+
+vars:
+  ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
+
+tasks:
+
+  list:
+    desc: List all the hosts
+    dir: "{{.ANSIBLE_DIR}}"
+    cmd: ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yaml --list-hosts
+
+  ping:
+    desc: Ping all the hosts
+    dir: "{{.ANSIBLE_DIR}}"
+    cmd: ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yaml --one-line -m 'ping'
+
+  cmd:
+    desc: Execute given command on all hosts
+    dir: "{{.ANSIBLE_DIR}}"
+    cmd: ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yaml --one-line -a '{{.CLI_ARGS}}'

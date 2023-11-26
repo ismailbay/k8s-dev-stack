@@ -1,0 +1,25 @@
+---
+version: "3"
+
+vars:
+  BOOTSTRAP_DIR: "{{.ROOT_DIR}}/bootstrap"
+  ANSIBLE_DIR: "{{.ROOT_DIR}}/ansible"
+  KUBERNETES_DIR: "{{.ROOT_DIR}}/kubernetes"
+  TERRAFORM_DIR: "{{.ROOT_DIR}}/terraform"
+
+env:
+  KUBECONFIG: "{{.ROOT_DIR}}/kubeconfig"
+  SOPS_AGE_KEY_FILE: ~/.config/sops/age/keys.txt
+  
+includes:
+  ansible: .taskfiles/AnsibleTasks.yaml
+  
+tasks:
+
+  test:
+    cmds:
+      - echo 'Hello Ismail!'
+
+  default:
+    cmds:
+      - task -l
