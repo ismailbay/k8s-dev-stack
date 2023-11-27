@@ -19,6 +19,11 @@ tasks:
     dir: "{{.ANSIBLE_DIR}}"
     cmd: ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yaml {{.ANSIBLE_PLAYBOOK_DIR}}/cluster-prepare.yaml
 
+  install:
+    desc: Install Kubernetes on the nodes
+    dir: "{{.ANSIBLE_DIR}}"
+    cmd: ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yaml {{.ANSIBLE_PLAYBOOK_DIR}}/cluster-installation.yaml
+
   list:
     desc: List all the hosts
     dir: "{{.ANSIBLE_DIR}}"

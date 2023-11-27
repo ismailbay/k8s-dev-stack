@@ -123,3 +123,5 @@ secrets.yaml
 # nix
 flake.lock
 
+# k8s
+kubeconfig
