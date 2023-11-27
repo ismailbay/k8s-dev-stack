@@ -16,10 +16,6 @@ includes:
   
 tasks:
 
-  test:
-    cmds:
-      - echo 'Hello Ismail!'
-
   default:
     cmds:
       - task -l
