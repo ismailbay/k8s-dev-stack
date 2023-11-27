@@ -121,7 +121,7 @@ secrets.yml
 secrets.yaml
 
 # nix
-flake.lock
+#flake.lock
 
 # k8s
 kubeconfig
