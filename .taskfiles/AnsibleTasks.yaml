@@ -2,6 +2,7 @@
 version: 3
 
 vars:
+  ANSIBLE_PLAYBOOK_DIR: "{{.ANSIBLE_DIR}}/playbooks"
   ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
 
 tasks:
@@ -12,6 +13,11 @@ tasks:
     cmds:
       - ansible-galaxy install -r requirements.yaml --roles-path {{.ANSIBLE_DIR}}/.ansible/roles
       - ansible-galaxy collection install -r requirements.yaml --collections-path {{.ANSIBLE_DIR}}/.ansible/collections
+
+  prepare:
+    desc: Prepare all the k8s nodes for running k3s
+    dir: "{{.ANSIBLE_DIR}}"
+    cmd: ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yaml {{.ANSIBLE_PLAYBOOK_DIR}}/cluster-prepare.yaml
 
   list:
     desc: List all the hosts
