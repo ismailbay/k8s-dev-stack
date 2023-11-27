@@ -2,7 +2,6 @@
 version: "3"
 
 vars:
-  BOOTSTRAP_DIR: "{{.ROOT_DIR}}/bootstrap"
   ANSIBLE_DIR: "{{.ROOT_DIR}}/ansible"
   KUBERNETES_DIR: "{{.ROOT_DIR}}/kubernetes"
   TERRAFORM_DIR: "{{.ROOT_DIR}}/terraform"
@@ -13,6 +12,7 @@ env:
   
 includes:
   ansible: .taskfiles/AnsibleTasks.yaml
+  cluster: .taskfiles/ClusterTasks.yaml
   
 tasks:
 

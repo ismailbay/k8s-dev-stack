@@ -1,0 +1,18 @@
+---
+version: "3"
+
+vars:
+  BOOTSTRAP_DIR: "{{.KUBERNETES_DIR}}/bootstrap"
+  
+tasks:
+
+  verify:
+    silent: false
+    desc: Verify k8s connection
+    cmd: kubectl get nodes
+
+  bootstrap:
+    desc: Install Bitnami's Sealed Secrets and Argo CD
+    cmds:
+      - kubectl apply -k "{{.BOOTSTRAP_DIR}}/sealed-secrets"
+      - kubectl apply -k "{{.BOOTSTRAP_DIR}}/argo-cd"

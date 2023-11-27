@@ -28,6 +28,7 @@
             jq
             kubectl
             kubernetes-helm
+            kubeseal
             kustomize
             neovim
             neofetch
