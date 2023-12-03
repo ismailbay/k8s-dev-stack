@@ -1,0 +1,38 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: kubernetes-apps
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://gitea.ibay.dev:3000/ismailbay/k8s-dev-stack.git
+        revision: HEAD
+        directories:
+          - path: kubernetes/app/*
+  template:
+    metadata:
+      name: '{{.path.basename}}'
+    spec:
+      destination:
+        name: in-cluster
+      project: default
+      source:
+        repoURL: https://gitea.ibay.dev:3000/ismailbay/k8s-dev-stack.git
+        path: '{{.path.path}}'
+        targetRevision: HEAD
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          limit: 10
+          backoff:
+            duration: 1m
+            factor: 2
+            maxDuration: 16m
+        syncOptions:
+          - CreateNamespace=true
+          - ApplyOutOfSyncOnly=true
+          - ServerSideApply=true

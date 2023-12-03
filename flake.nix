@@ -37,8 +37,8 @@
             terraform
             yamllint
             yq
-          
-            
+
+
             (python3.withPackages (p: with p; [
               jinja2
               kubernetes

@@ -9,11 +9,11 @@ vars:
 env:
   KUBECONFIG: "{{.ROOT_DIR}}/kubeconfig"
   SOPS_AGE_KEY_FILE: ~/.config/sops/age/keys.txt
-  
+
 includes:
   ansible: .taskfiles/AnsibleTasks.yaml
   cluster: .taskfiles/ClusterTasks.yaml
-  
+
 tasks:
 
   default:
