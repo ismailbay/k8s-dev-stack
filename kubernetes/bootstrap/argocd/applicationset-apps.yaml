@@ -1,6 +1,6 @@
 ---
 apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
+kind: Application
 metadata:
   name: kubernetes-apps
   namespace: argocd
@@ -13,14 +13,14 @@ spec:
           - path: kubernetes/app/*
   template:
     metadata:
-      name: '{{.path.basename}}'
+      name: '{{ `{{path.basename}}` }}'
     spec:
       destination:
         name: in-cluster
       project: default
       source:
         repoURL: https://gitea.ibay.dev:3000/ismailbay/k8s-dev-stack.git
-        path: '{{.path.path}}'
+        path: '{{ `{{path.basename}}` }}'
         targetRevision: HEAD
       syncPolicy:
         automated:

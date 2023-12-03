@@ -15,4 +15,4 @@ tasks:
     desc: Install Bitnami's Sealed Secrets and Argo CD
     cmds:
       - kubectl apply -k "{{.BOOTSTRAP_DIR}}/sealed-secrets"
-      - kubectl apply -k "{{.BOOTSTRAP_DIR}}/argo-cd"
+      - kubectl apply -k "{{.BOOTSTRAP_DIR}}/argocd"
