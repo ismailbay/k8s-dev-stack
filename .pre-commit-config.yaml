@@ -18,7 +18,7 @@ repos:
     rev: v2.1.1
     hooks:
       - id: forbid-secrets
-        exclude: repository.yaml # not a secret
+        exclude: git-repository.yaml # not a secret
   - repo: https://github.com/gruntwork-io/pre-commit
     rev: v0.1.17
     hooks:

@@ -125,3 +125,7 @@ secrets.yaml
 
 # k8s
 kubeconfig
+
+# helm
+*.tgz
+Chart.lock
