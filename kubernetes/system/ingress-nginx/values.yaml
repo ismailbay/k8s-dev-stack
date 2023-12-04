@@ -1,0 +1,12 @@
+ingress-nginx:
+  namespaceOverride: networking
+  controller:
+    admissionWebhooks:
+      timeoutSeconds: 30
+    extraEnvs:
+      - name: TZ
+        value: "Europe/Vienna"
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
