@@ -10,18 +10,18 @@ spec:
         repoURL: https://gitea.ibay.dev:3000/ismailbay/k8s-dev-stack.git
         revision: HEAD
         directories:
-          - path: kubernetes/system/*
+          - path: apps/*
   template:
     metadata:
       name: '{{path.basename}}'
     spec:
       destination:
         name: in-cluster
-        namespace: '{{path.basename}}'
+        namespace: '{{index path.segments 1}}' # parent folder as namespace
       project: default
       source:
         repoURL: https://gitea.ibay.dev:3000/ismailbay/k8s-dev-stack.git
-        path: '{{path}}'
+        path: '{{path.path}}'
         targetRevision: HEAD
       syncPolicy:
         automated:

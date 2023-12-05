@@ -1,5 +1,4 @@
 external-dns:
-  namespaceOverride: network
   provider: cloudflare
   txtPrefix: k8s.
   txtOwnerId: default
