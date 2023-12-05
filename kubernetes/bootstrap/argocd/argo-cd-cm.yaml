@@ -6,6 +6,7 @@ metadata:
 data:
   # to kustomize helm charts
   kustomize.buildOptions: --enable-helm
+  application.instanceLabelKey: argocd.argoproj.io/instance
   resource.exclusions: |
     - apiGroups:
       - cilium.io
