@@ -1,0 +1,15 @@
+external-dns:
+  namespaceOverride: network
+  provider: cloudflare
+  txtPrefix: k8s.
+  txtOwnerId: default
+  env:
+    - name: CF_API_TOKEN
+      valueFrom:
+        secretKeyRef:
+          name: cloudflare-api-token
+          key: api-token
+  extraArgs:
+    - --annotation-filter=external-dns.alpha.kubernetes.io/exclude notin (true)
+  serviceMonitor:
+    enabled: true
