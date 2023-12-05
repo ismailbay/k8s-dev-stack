@@ -2,27 +2,29 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: kubernetes-system
+  name: networking
   namespace: argocd
 spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
   generators:
     - git:
         repoURL: https://gitea.ibay.dev:3000/ismailbay/k8s-dev-stack.git
         revision: HEAD
         directories:
-          - path: apps/*
+          - path: apps/networking/*
   template:
     metadata:
-      name: '{{path.basename}}'
+      name: '{{.path.basename}}'
     spec:
-      destination:
-        name: in-cluster
-        namespace: '{{index path.segments 1}}' # parent folder as namespace
       project: default
       source:
         repoURL: https://gitea.ibay.dev:3000/ismailbay/k8s-dev-stack.git
-        path: '{{path.path}}'
+        path: '{{.path.path}}'
         targetRevision: HEAD
+      destination:
+        name: in-cluster
+        namespace: networking
       syncPolicy:
         automated:
           prune: true

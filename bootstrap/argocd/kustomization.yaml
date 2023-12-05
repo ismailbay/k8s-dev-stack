@@ -4,10 +4,10 @@ kind: Kustomization
 namespace: argocd
 resources:
   - namespace.yaml
-  - https://raw.githubusercontent.com/argoproj/argo-cd/v2.7.2/manifests/install.yaml
+  - https://raw.githubusercontent.com/argoproj/argo-cd/v2.9.3/manifests/install.yaml
   - git-repository.yaml
-  - apps.yaml
-  - ingress.yaml
+  - apps-networking.yaml
+  - ingress.yaml # TODO move to self-managing argocd
 
 patchesStrategicMerge:
   - argocd-cm.yaml
