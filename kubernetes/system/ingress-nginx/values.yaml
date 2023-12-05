@@ -1,5 +1,5 @@
 ingress-nginx:
-  namespaceOverride: networking
+  namespaceOverride: network
   controller:
     admissionWebhooks:
       timeoutSeconds: 30
