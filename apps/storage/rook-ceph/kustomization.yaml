@@ -6,4 +6,5 @@ helmCharts:
     repo: https://charts.rook.io/release
     version: "1.12.9"
     releaseName: rook-ceph
-    namespace: rook-ceph
+    namespace: storage
+    #TODO: migrate to custom helm chart
