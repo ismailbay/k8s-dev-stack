@@ -1,0 +1,55 @@
+hajimari:
+  hajimari:
+    name: Ismail
+    title: Home
+    defaultEnable: true
+    alwaysTargetBlank: true
+    namespaceSelector:
+      any: true
+    globalBookmarks:
+      - group: Root
+        bookmarks:
+          - name: openWrt
+            url: 'http://192.168.1.1'
+          - name: Proxmox
+            url: 'https://192.168.20.100:8006'
+      - group: Me
+        bookmarks:
+          - name: Github
+            url: 'https://github.com/ismailbay/'
+          - name: Gmail
+            url: 'http://gmail.com'
+          - name: Twitter
+            url: 'https://twitter.com/of_ismailbay'
+      - group: Sources
+        bookmarks:
+          - name: CNCF
+            url: 'https://www.cncf.io'
+          - name: ArtifactHUB
+            url: 'https://artifacthub.io'
+      - group: Dev
+        bookmarks:
+          - name: Devhints
+            url: https://devhints.io
+  env:
+    TZ: Europe/Vienna
+  ingress:
+    main:
+      enabled: true
+      ingressClassName: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt
+        hajimari.io/enable: "false"
+      hosts:
+        - host: &host home.ismailbay.dev
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: hajimari-tls
+          hosts:
+            - *host
+  persistence:
+    data:
+      enabled: true
+      type: emptyDir
