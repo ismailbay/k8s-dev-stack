@@ -1,4 +1,5 @@
 cert-manager:
+  namespaceOverride: network
   installCRDs: true
   prometheus:
     enabled: true
