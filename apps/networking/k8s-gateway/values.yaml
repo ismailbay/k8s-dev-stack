@@ -1,6 +1,6 @@
 k8s-gateway:
   fullnameOverride: k8s-gateway
-  domain: "${SECRET_DOMAIN}"
+  domain: ismailbay.dev
   ttl: 1
   service:
     type: LoadBalancer

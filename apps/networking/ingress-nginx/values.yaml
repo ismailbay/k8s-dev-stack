@@ -27,7 +27,7 @@ ingress-nginx:
       - name: TZ
         value: "Europe/Vienna"
     extraArgs:
-      default-ssl-certificate: "networking/${SECRET_DOMAIN/./-}-production-tls"
+      default-ssl-certificate: "networking/ismailbay-dev-production-tls"
     metrics:
       enabled: true
       serviceMonitor:
