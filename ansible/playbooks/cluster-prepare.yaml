@@ -83,7 +83,7 @@
             dest: /etc/resolv.conf
             content: |
               search .
-              nameserver 1.1.1.1
+              nameserver {{ nameserver }}
 
     - name: System Configuration
       notify: Reboot

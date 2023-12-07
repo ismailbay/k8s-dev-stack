@@ -1,6 +1,7 @@
 ---
 timezone: "Europe/Vienna"
 coredns_addr: "10.43.0.10"
+nameserver: "192.168.1.2"
 kube_vip_addr: "192.168.20.254"
 cluster_cidr: "10.42.0.0/16"
 service_cidr: "10.43.0.0/16"
