@@ -13,4 +13,3 @@ resources:
 
 patchesStrategicMerge:
   - argocd-cm.yaml
-  - argocd-cmd-params-cm.yaml

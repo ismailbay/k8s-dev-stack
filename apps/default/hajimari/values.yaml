@@ -29,8 +29,10 @@ hajimari:
             url: 'https://artifacthub.io'
       - group: Dev
         bookmarks:
+          - name: DEV
+            url: 'https://dev.to'
           - name: Devhints
-            url: https://devhints.io
+            url: 'https://devhints.io'
   env:
     TZ: Europe/Vienna
   ingress:
