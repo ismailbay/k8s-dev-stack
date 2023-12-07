@@ -96,7 +96,8 @@ kube-prometheus-stack:
       hosts:
         - prometheus.ismailbay.dev
       tls:
-        - hosts:
+        - secretName: prometheus-tls
+          hosts:
             - prometheus.ismailbay.dev
     prometheusSpec:
       ruleSelectorNilUsesHelmValues: false
@@ -233,7 +234,8 @@ kube-prometheus-stack:
       hosts:
         - &host grafana.ismailbay.dev
       tls:
-        - hosts:
+        - secretName: grafana-tls
+          hosts:
             - *host
     persistence:
       enabled: false
