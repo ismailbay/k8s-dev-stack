@@ -1,7 +1,9 @@
 ingress-nginx:
   controller:
-    annotations:
-      io.cilium/lb-ipam-ips: "192.168.20.131"
+    service:
+      annotations:
+        external-dns.alpha.kubernetes.io/hostname: "k8s.ismailbay.dev"
+        io.cilium/lb-ipam-ips: "192.168.20.131"
     config:
       client-body-buffer-size: 100M
       client-body-timeout: 120
