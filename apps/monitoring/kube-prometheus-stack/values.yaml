@@ -161,7 +161,7 @@ kube-prometheus-stack:
             url: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
             jsonData:
               prometheusType: Prometheus
-            isDefault: true
+            isDefault: false
     dashboards:
       default:
         cloudflared:
