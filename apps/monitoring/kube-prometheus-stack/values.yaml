@@ -89,6 +89,7 @@ kube-prometheus-stack:
       enabled: true
       ingressClassName: nginx
       annotations:
+        cert-manager.io/cluster-issuer: letsencrypt
         hajimari.io/appName: Prometheus
         hajimari.io/icon: simple-icons:prometheus
       pathType: Prefix
@@ -226,6 +227,8 @@ kube-prometheus-stack:
       enabled: true
       ingressClassName: nginx
       annotations:
+        cert-manager.io/cluster-issuer: letsencrypt
+        hajimari.io/appName: Grafana
         hajimari.io/icon: simple-icons:grafana
       hosts:
         - &host grafana.ismailbay.dev
