@@ -87,7 +87,7 @@ kube-prometheus-stack:
   prometheus:
     ingress:
       enabled: true
-      ingressClassName: internal
+      ingressClassName: nginx
       annotations:
         hajimari.io/appName: Prometheus
         hajimari.io/icon: simple-icons:prometheus
