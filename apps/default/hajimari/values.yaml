@@ -4,15 +4,29 @@ hajimari:
     title: Home
     defaultEnable: true
     alwaysTargetBlank: true
+    lightTheme: tron
+    darkTheme: tron
+    showAppGroups: false
+    showAppStatus: true
+    showAppUrls: false
+    showAppInfo: true
+    defaultAppIcon: mdi:application
     namespaceSelector:
       any: true
+    customApps:
+      - name: OpenWrt
+        url: "http://192.168.1.1"
+        icon: simple-icons:openwrt
+      - name: Cloudflare
+        url: "https://dash.cloudflare.com"
+        icon: simple-icons:cloudflare
+      - name: Minio
+        url: "https://minio.ibay.dev"
+        icon: simple-icons:minio
+      - name: Proxmox
+        url: "http://192.168.20.100:8006"
+        icon: simple-icons:proxmox
     globalBookmarks:
-      - group: Root
-        bookmarks:
-          - name: openWrt
-            url: 'http://192.168.1.1'
-          - name: Proxmox
-            url: 'https://192.168.20.100:8006'
       - group: Me
         bookmarks:
           - name: Github
