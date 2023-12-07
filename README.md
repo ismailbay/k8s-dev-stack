@@ -20,7 +20,7 @@ Just a learning project for setting up a Kubernetes Cluster with tools like Ansi
 ## ☢️ &nbsp; Nuke Counter: 1
 
 <details>
-  <summary>1</summary>
+  <summary>1: DNS, it's always DNS!</summary>
 
   ### What happened?
   I attempted to configure [Split DNS](https://en.wikipedia.org/wiki/Split-horizon_DNS) using two ingress-nginx controllers: one for internal requests and another for those coming over Cloudflare IPs. To cut a long story short, I severely misconfigured my pi-hole, OpenWrt, and Cilium settings.
@@ -29,5 +29,10 @@ Just a learning project for setting up a Kubernetes Cluster with tools like Ansi
   One genius guy explaining it very well and convincing me that I absolutely need it does not necessarily mean that I need it right now.
 
   Keep it simple! Use WireGuard over OCI until I decide to make anything publicly available.
+
+  ### How to fix it in future?
+  RTFM!
+  * https://artifacthub.io/packages/helm/ingress-nginx/ingress-nginx#additional-internal-load-balancer
+  * https://whitematter.tech/posts/https-for-homelab-internal-resources/
 
 </details>
