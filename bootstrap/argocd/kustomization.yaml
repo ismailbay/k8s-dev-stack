@@ -8,6 +8,7 @@ resources:
   - git-repository.yaml
   - apps-networking.yaml
   - apps-storage.yaml
+  - apps-rook.yaml
   - apps-default.yaml
   - apps-monitoring.yaml
   - ingress.yaml # TODO move to self-managing argocd

@@ -1,0 +1,46 @@
+rook-ceph:
+  monitoring:
+    enabled: true
+
+rook-ceph-cluster:
+  monitoring:
+    enabled: true
+    createPrometheusRules: true
+  ingress:
+    dashboard:
+      ingressClassName: nginx
+      host:
+        name: &host rook.ismailbay.dev
+        path: /
+      tls:
+        - secretName: rook-ceph-cluster-tls
+          hosts:
+            - *host
+  toolbox:
+    enabled: true
+  cephClusterSpec:
+    network:
+      provider: host
+    dashboard:
+      enabled: true
+      urlPrefix: /
+      ssl: false
+    storage:
+      useAllNodes: false
+      useAllDevices: false
+      config:
+        osdsPerDevice: "1"
+      nodes:
+        - name: k8s-1
+          devices:
+            - name: /dev/disk/by-id/nvme-Samsung_SSD_980_1TB_S649NL0TA86516F
+        - name: k8s-2
+          devices:
+            - name: /dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5GXNX0W707358M
+        - name: k8s-3
+          devices:
+            - name: /dev/disk/by-id/nvme-Samsung_SSD_980_1TB_S649NL0TA86509B
+  # defaults are good enough with 3 nodes
+  #  cephFileSystems:
+
+  # TODO: configure snapshots with Velero
