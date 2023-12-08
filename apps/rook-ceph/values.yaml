@@ -47,25 +47,25 @@ rook-ceph-cluster:
     resources:
       mgr:
         limits:
+          cpu: 250m
+          memory: 256Mi
+        requests:
+          cpu: 125m
+          memory: 128Mi
+      mon:
+        limits:
           cpu: 500m
           memory: 512Mi
         requests:
           cpu: 250m
           memory: 256Mi
-      mon:
-        limits:
-          cpu: 1000m
-          memory: 1Gi
-        requests:
-          cpu: 500m
-          memory: 512Mi
       osd:
         limits:
-          cpu: 1000m
-          memory: 2Gi
-        requests:
           cpu: 500m
-          memory: 2Gi
+          memory: 1Gi
+        requests:
+          cpu: 250m
+          memory: 1Gi
   # defaults are good enough with 3 nodes
   #  cephFileSystems:
 
