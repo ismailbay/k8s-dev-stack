@@ -62,10 +62,10 @@ rook-ceph-cluster:
       osd:
         limits:
           cpu: 500m
-          memory: 1Gi
+          memory: 2Gi
         requests:
           cpu: 250m
-          memory: 1Gi
+          memory: 2Gi
   # defaults are good enough with 3 nodes
   #  cephFileSystems:
 
