@@ -1,6 +1,14 @@
 rook-ceph:
   monitoring:
     enabled: true
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
 
 rook-ceph-cluster:
   monitoring:
