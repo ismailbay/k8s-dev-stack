@@ -40,6 +40,28 @@ rook-ceph-cluster:
         - name: k8s-3
           devices:
             - name: /dev/disk/by-id/nvme-Samsung_SSD_980_1TB_S649NL0TA86509B
+    resources:
+      mgr:
+        limits:
+          cpu: 500m
+          memory: 512Mi
+        requests:
+          cpu: 250m
+          memory: 256Mi
+      mon:
+        limits:
+          cpu: 1000m
+          memory: 1Gi
+        requests:
+          cpu: 500m
+          memory: 512Mi
+      osd:
+        limits:
+          cpu: 1000m
+          memory: 2Gi
+        requests:
+          cpu: 500m
+          memory: 2Gi
   # defaults are good enough with 3 nodes
   #  cephFileSystems:
 

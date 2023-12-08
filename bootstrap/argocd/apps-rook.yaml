@@ -12,7 +12,7 @@ spec:
         repoURL: https://gitea.ibay.dev:3000/ismailbay/k8s-dev-stack.git
         revision: HEAD
         directories:
-          - path: apps/rook-ceph/*
+          - path: apps/rook-ceph
   template:
     metadata:
       name: '{{.path.basename}}'
