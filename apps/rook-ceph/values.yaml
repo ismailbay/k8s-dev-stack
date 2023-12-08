@@ -9,6 +9,10 @@ rook-ceph-cluster:
   ingress:
     dashboard:
       ingressClassName: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt
+        hajimari.io/appName: Rook
+        hajimari.io/icon: mdi:chess-rook
       host:
         name: &host rook.ismailbay.dev
         path: /
