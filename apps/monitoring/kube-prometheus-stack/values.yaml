@@ -111,7 +111,7 @@ kube-prometheus-stack:
       storageSpec:
         volumeClaimTemplate:
           spec:
-            storageClassName: local-path
+            storageClassName: longhorn
             resources:
               requests:
                 storage: 10Gi
@@ -237,5 +237,3 @@ kube-prometheus-stack:
         - secretName: grafana-tls
           hosts:
             - *host
-    persistence:
-      enabled: false
