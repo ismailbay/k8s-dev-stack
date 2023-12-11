@@ -22,7 +22,7 @@
         - name: Packages | Install
           ansible.builtin.apt:
             name: apt-transport-https,ca-certificates,conntrack,curl,dirmngr,gdisk,gnupg,hdparm,htop,
-              iptables,iputils-ping,ipvsadm,libseccomp2,lm-sensors,neofetch,net-tools,nfs-common,
+              iptables,iputils-ping,ipvsadm,jq,libseccomp2,lm-sensors,neofetch,net-tools,nfs-common,
               nvme-cli,open-iscsi,parted,psmisc,python3,python3-apt,python3-kubernetes,python3-yaml,
               smartmontools,socat,software-properties-common,unzip,util-linux
             install_recommends: false
@@ -78,7 +78,6 @@
             state: absent
         - name: Network Configuration | Remove search domain
           ansible.builtin.copy:
-            attributes: +i
             mode: 644
             dest: /etc/resolv.conf
             content: |
@@ -128,6 +127,32 @@
               fs.inotify.max_queued_events: 65536
               fs.inotify.max_user_watches: 524288
               fs.inotify.max_user_instances: 8192
+        - name: Create a new ext4 primary partition
+          community.general.parted:
+            device: "{{ data_device }}"
+            number: 1
+            label: gpt
+            name: k8s-data
+            state: present
+            fs_type: ext4
+        - name: Create a ext4 filesystem
+          community.general.filesystem:
+            fstype: ext4
+            dev: "{{ data_device }}p1"
+        - name: Get the PARTUUID
+          ansible.builtin.command: lsblk {{ data_device }}p1 -no PARTUUID
+          register: data_partition_uuid
+        - name: Mount the newly created partition
+          ansible.posix.mount:
+            path: /var/lib/longhorn
+            src: PARTUUID={{ data_partition_uuid.stdout_lines[0] }}
+            fstype: ext4
+            state: mounted
+        - name: Enable service httpd and ensure it is not masked
+          ansible.builtin.systemd_service:
+            name: iscsid
+            enabled: true
+            state: started
 
   handlers:
     - name: Reboot

@@ -67,6 +67,12 @@
       vars:
         stale_containers_state: disabled
 
+    - name: Wipe k8s dedicated data device
+      community.general.parted:
+        device: "{{ data_device }}"
+        number: 1
+        state: absent
+
     - name: Reboot
       ansible.builtin.reboot:
         msg: Rebooting nodes
