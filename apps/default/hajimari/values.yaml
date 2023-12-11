@@ -68,4 +68,5 @@ hajimari:
   persistence:
     data:
       enabled: true
-      type: emptyDir
+      storageClass: longhorn
+      size: 1Gi
