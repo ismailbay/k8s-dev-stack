@@ -164,6 +164,17 @@ kube-prometheus-stack:
             jsonData:
               prometheusType: Prometheus
             isDefault: false
+          - name: Loki
+            type: loki
+            access: proxy
+            url: http://loki-gateway.monitoring.svc.cluster.local:80
+          # TODO: add alertmanager chart
+          # - name: Alertmanager
+          #   type: alertmanager
+          #   access: proxy
+          #   url: http://alertmanager.monitoring.svc.cluster.local:9093
+          #   jsonData:
+          #     implementation: prometheus
     dashboards:
       default:
         cloudflared:
