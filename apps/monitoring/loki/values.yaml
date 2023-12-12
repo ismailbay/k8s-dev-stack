@@ -15,3 +15,8 @@ loki:
     persistence:
       size: 10Gi
       storageClass: longhorn
+  monitoring:
+    selfMonitoring:
+      podLogs:
+        # https://github.com/grafana/loki/issues/10757
+        apiVersion: monitoring.grafana.com/v1alpha2/PodLogs
