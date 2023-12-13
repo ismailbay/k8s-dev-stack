@@ -106,7 +106,8 @@ grafana:
     storage:
       longhorn:
         gnetId: 16888
-        datasource: Prometheus
+        datasource:
+          - {name: DS_PROMETHEUS, value: Prometheus}
     # infra:
     #   proxmox-ve:
     #     gnetId: 10347
