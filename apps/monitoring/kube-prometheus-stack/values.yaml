@@ -2,33 +2,24 @@ kube-prometheus-stack:
   crds:
     enabled: true
   cleanPrometheusOperatorObjectNames: true
+
   alertmanager:
+    enabled: false # TODO: activate and configure this!
+
+  grafana:
     enabled: false
-  kube-state-metrics:
-    metricLabelsAllowlist:
-      - "deployments=[*]"
-      - "persistentvolumeclaims=[*]"
-      - "pods=[*]"
-    prometheus:
-      monitor:
-        enabled: true
-        relabelings:
-          - action: replace
-            sourceLabels: ["__meta_kubernetes_pod_node_name"]
-            regex: ^(.*)$
-            replacement: $1
-            targetLabel: kubernetes_node
+
   kubelet:
     enabled: true
     serviceMonitor:
       metricRelabelings:
         # Remove duplicate labels provided by k3s
-        - action: keep
-          sourceLabels: ["__name__"]
-          regex: (apiserver_audit|apiserver_client|apiserver_delegated|apiserver_envelope|apiserver_storage|apiserver_webhooks|authentication_token|cadvisor_version|container_blkio|container_cpu|container_fs|container_last|container_memory|container_network|container_oom|container_processes|container|csi_operations|disabled_metric|get_token|go|hidden_metric|kubelet_certificate|kubelet_cgroup|kubelet_container|kubelet_containers|kubelet_cpu|kubelet_device|kubelet_graceful|kubelet_http|kubelet_lifecycle|kubelet_managed|kubelet_node|kubelet_pleg|kubelet_pod|kubelet_run|kubelet_running|kubelet_runtime|kubelet_server|kubelet_started|kubelet_volume|kubernetes_build|kubernetes_feature|machine_cpu|machine_memory|machine_nvm|machine_scrape|node_namespace|plugin_manager|prober_probe|process_cpu|process_max|process_open|process_resident|process_start|process_virtual|registered_metric|rest_client|scrape_duration|scrape_samples|scrape_series|storage_operation|volume_manager|volume_operation|workqueue)_(.+)
-        - action: replace
-          sourceLabels: ["node"]
+        - sourceLabels: ["__name__"]
+          regex: "(apiserver_audit|apiserver_client|apiserver_delegated|apiserver_envelope|apiserver_storage|apiserver_webhooks|authentication_token|cadvisor_version|container_blkio|container_cpu|container_fs|container_last|container_memory|container_network|container_oom|container_processes|container|csi_operations|disabled_metric|get_token|go|hidden_metric|kubelet_certificate|kubelet_cgroup|kubelet_container|kubelet_containers|kubelet_cpu|kubelet_device|kubelet_graceful|kubelet_http|kubelet_lifecycle|kubelet_managed|kubelet_node|kubelet_pleg|kubelet_pod|kubelet_run|kubelet_running|kubelet_runtime|kubelet_server|kubelet_started|kubelet_volume|kubernetes_build|kubernetes_feature|machine_cpu|machine_memory|machine_nvm|machine_scrape|node_namespace|plugin_manager|prober_probe|process_cpu|process_max|process_open|process_resident|process_start|process_virtual|registered_metric|rest_client|scrape_duration|scrape_samples|scrape_series|storage_operation|volume_manager|volume_operation|workqueue)_(.+)"
+          action: keep
+        - sourceLabels: ["node"]
           targetLabel: instance
+          action: replace
         # Drop high cardinality labels
         - action: labeldrop
           regex: (uid)
@@ -37,14 +28,15 @@ kube-prometheus-stack:
         - action: drop
           sourceLabels: ["__name__"]
           regex: (rest_client_request_duration_seconds_bucket|rest_client_request_duration_seconds_sum|rest_client_request_duration_seconds_count)
+
   kubeApiServer:
     enabled: true
     serviceMonitor:
       metricRelabelings:
         # Remove duplicate labels provided by k3s
-        - action: keep
-          sourceLabels: ["__name__"]
-          regex: (aggregator_openapi|aggregator_unavailable|apiextensions_openapi|apiserver_admission|apiserver_audit|apiserver_cache|apiserver_cel|apiserver_client|apiserver_crd|apiserver_current|apiserver_envelope|apiserver_flowcontrol|apiserver_init|apiserver_kube|apiserver_longrunning|apiserver_request|apiserver_requested|apiserver_response|apiserver_selfrequest|apiserver_storage|apiserver_terminated|apiserver_tls|apiserver_watch|apiserver_webhooks|authenticated_user|authentication|disabled_metric|etcd_bookmark|etcd_lease|etcd_request|field_validation|get_token|go|grpc_client|hidden_metric|kube_apiserver|kubernetes_build|kubernetes_feature|node_authorizer|pod_security|process_cpu|process_max|process_open|process_resident|process_start|process_virtual|registered_metric|rest_client|scrape_duration|scrape_samples|scrape_series|serviceaccount_legacy|serviceaccount_stale|serviceaccount_valid|watch_cache|workqueue)_(.+)
+        - sourceLabels: ["__name__"]
+          regex: "(aggregator_openapi|aggregator_unavailable|apiextensions_openapi|apiserver_admission|apiserver_audit|apiserver_cache|apiserver_cel|apiserver_client|apiserver_crd|apiserver_current|apiserver_envelope|apiserver_flowcontrol|apiserver_init|apiserver_kube|apiserver_longrunning|apiserver_request|apiserver_requested|apiserver_response|apiserver_selfrequest|apiserver_storage|apiserver_terminated|apiserver_tls|apiserver_watch|apiserver_webhooks|authenticated_user|authentication|disabled_metric|etcd_bookmark|etcd_lease|etcd_request|field_validation|get_token|go|grpc_client|hidden_metric|kube_apiserver|kubernetes_build|kubernetes_feature|node_authorizer|pod_security|process_cpu|process_max|process_open|process_resident|process_start|process_virtual|registered_metric|rest_client|scrape_duration|scrape_samples|scrape_series|serviceaccount_legacy|serviceaccount_stale|serviceaccount_valid|watch_cache|workqueue)_(.+)"
+          action: keep
         # Drop high cardinality labels
         - action: drop
           sourceLabels: ["__name__"]
@@ -52,38 +44,37 @@ kube-prometheus-stack:
         - action: drop
           sourceLabels: ["__name__"]
           regex: (apiserver_response_sizes_bucket|apiserver_watch_events_sizes_bucket)
+
   kubeControllerManager:
     enabled: true
-    endpoints:
-      - 192.168.20.110
-      - 192.168.20.111
-      - 192.168.20.112
-    serviceMonitor:
-      metricRelabelings:
-        # Remove duplicate labels provided by k3s
-        - action: keep
-          sourceLabels: ["__name__"]
-          regex: "(apiserver_audit|apiserver_client|apiserver_delegated|apiserver_envelope|apiserver_storage|apiserver_webhooks|attachdetach_controller|authenticated_user|authentication|cronjob_controller|disabled_metric|endpoint_slice|ephemeral_volume|garbagecollector_controller|get_token|go|hidden_metric|job_controller|kubernetes_build|kubernetes_feature|leader_election|node_collector|node_ipam|process_cpu|process_max|process_open|process_resident|process_start|process_virtual|pv_collector|registered_metric|replicaset_controller|rest_client|retroactive_storageclass|root_ca|running_managed|scrape_duration|scrape_samples|scrape_series|service_controller|storage_count|storage_operation|ttl_after|volume_operation|workqueue)_(.+)"
-  kubeEtcd:
-    enabled: true
-    endpoints:
-      - 192.168.20.110
-      - 192.168.20.111
-      - 192.168.20.112
+    endpoints: &node_ips
+      - 192.168.10.110
+      - 192.168.10.111
+      - 192.168.10.112
+
   kubeScheduler:
     enabled: true
-    endpoints:
-      - 192.168.20.110
-      - 192.168.20.111
-      - 192.168.20.112
+    endpoints: *node_ips
     serviceMonitor:
       metricRelabelings:
         # Remove duplicate labels provided by k3s
         - action: keep
           sourceLabels: ["__name__"]
           regex: "(apiserver_audit|apiserver_client|apiserver_delegated|apiserver_envelope|apiserver_storage|apiserver_webhooks|authenticated_user|authentication|disabled_metric|go|hidden_metric|kubernetes_build|kubernetes_feature|leader_election|process_cpu|process_max|process_open|process_resident|process_start|process_virtual|registered_metric|rest_client|scheduler|scrape_duration|scrape_samples|scrape_series|workqueue)_(.+)"
+
   kubeProxy:
-    enabled: false  # Disabled due to eBPF
+    enabled: false
+
+  kubeEtcd:
+    enabled: true
+    endpoints: *node_ips
+
+  kubeStateMetrics:
+    enabled: false
+
+  nodeExporter:
+    enabled: false
+
   prometheus:
     ingress:
       enabled: true
@@ -92,14 +83,19 @@ kube-prometheus-stack:
         cert-manager.io/cluster-issuer: letsencrypt
         hajimari.io/appName: Prometheus
         hajimari.io/icon: simple-icons:prometheus
-      pathType: Prefix
       hosts:
-        - prometheus.ismailbay.dev
+        - &host prometheus.ismailbay.dev
       tls:
         - secretName: prometheus-tls
           hosts:
-            - prometheus.ismailbay.dev
+            - *host
+    thanosService:
+      enabled: true
+    thanosServiceMonitor:
+      enabled: true
     prometheusSpec:
+      replicas: 1
+      replicaExternalLabelName: __replica__
       ruleSelectorNilUsesHelmValues: false
       serviceMonitorSelectorNilUsesHelmValues: false
       podMonitorSelectorNilUsesHelmValues: false
@@ -107,144 +103,28 @@ kube-prometheus-stack:
       scrapeConfigSelectorNilUsesHelmValues: false
       enableAdminAPI: true
       walCompression: true
-      retentionSize: 8GB
+      retention: 2d
+      retentionSize: 15GB
+      enableFeatures:
+        - auto-gomaxprocs
+        - memory-snapshot-on-shutdown
+        - new-service-discovery-manager
       storageSpec:
         volumeClaimTemplate:
           spec:
-            storageClassName: longhorn
+            storageClassName: local-path
             resources:
               requests:
-                storage: 10Gi
-  grafana:
-    enabled: true
-    admin:
-      existingSecret: grafana-admin-secret
-    env:
-      GF_EXPLORE_ENABLED: true
-      GF_SERVER_ROOT_URL: "https://grafana.ismailbay.dev"
-    dashboardProviders:
-      dashboardproviders.yaml:
-        apiVersion: 1
-        providers:
-          - name: default
-            orgId: 1
-            folder: ""
-            type: file
-            disableDeletion: false
-            editable: true
-            options:
-              path: /var/lib/grafana/dashboards/default
-          - name: kubernetes
-            orgId: 1
-            folder: Kubernetes
-            type: file
-            disableDeletion: false
-            editable: true
-            options:
-              path: /var/lib/grafana/dashboards/kubernetes
-          - name: nginx
-            orgId: 1
-            folder: Nginx
-            type: file
-            disableDeletion: false
-            editable: true
-            options:
-              path: /var/lib/grafana/dashboards/nginx
-    datasources:
-      datasources.yaml:
-        apiVersion: 1
-        deleteDatasources:
-          - {name: Prometheus, orgId: 1}
-        datasources:
-          - name: Prometheus
-            type: prometheus
-            uid: prometheus
-            access: proxy
-            url: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
-            jsonData:
-              prometheusType: Prometheus
-            isDefault: false
-          - name: Loki
-            type: loki
-            access: proxy
-            url: http://loki-gateway.monitoring.svc.cluster.local:80
-          # TODO: add alertmanager chart
-          # - name: Alertmanager
-          #   type: alertmanager
-          #   access: proxy
-          #   url: http://alertmanager.monitoring.svc.cluster.local:9093
-          #   jsonData:
-          #     implementation: prometheus
-    dashboards:
-      default:
-        cloudflared:
-          gnetId: 17457  # https://grafana.com/grafana/dashboards/17457?tab=revisions
-          revision: 6
-          datasource:
-            - {name: DS_PROMETHEUS, value: Prometheus}
-        external-dns:
-          gnetId: 15038  # https://grafana.com/grafana/dashboards/15038?tab=revisions
-          revision: 1
-          datasource: Prometheus
-        cert-manager:
-          url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/cert-manager/dashboards/cert-manager.json
-          datasource: Prometheus
-        node-exporter-full:
-          gnetId: 1860  # https://grafana.com/grafana/dashboards/1860?tab=revisions
-          revision: 31
-          datasource: Prometheus
-      kubernetes:
-        kubernetes-api-server:
-          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-system-api-server.json
-          datasource: Prometheus
-        kubernetes-coredns:
-          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-system-coredns.json
-          datasource: Prometheus
-        kubernetes-global:
-          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-global.json
-          datasource: Prometheus
-        kubernetes-namespaces:
-          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-namespaces.json
-          datasource: Prometheus
-        kubernetes-nodes:
-          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-nodes.json
-          datasource: Prometheus
-        kubernetes-pods:
-          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-pods.json
-          datasource: Prometheus
-      nginx:
-        nginx:
-          url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/grafana/dashboards/nginx.json
-          datasource: Prometheus
-        nginx-request-handling-performance:
-          url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/grafana/dashboards/request-handling-performance.json
-          datasource: Prometheus
-    sidecar:
-      dashboards:
-        enabled: true
-        searchNamespace: ALL
-        labelValue: ""
-        label: grafana_dashboard
-        folderAnnotation: grafana_folder
-        provider:
-          disableDelete: true
-          foldersFromFilesStructure: true
-      datasources:
-        enabled: true
-        searchNamespace: ALL
-        labelValue: ""
-    serviceMonitor:
-      enabled: true
-    ingress:
-      enabled: true
-      ingressClassName: nginx
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt
-        hajimari.io/appName: Grafana
-        hajimari.io/icon: simple-icons:grafana
-      hosts:
-        - &host grafana.ismailbay.dev
-      tls:
-        - secretName: grafana-tls
-          hosts:
-            - *host
+                storage: 20Gi
+      thanos:
+        image: quay.io/thanos/thanos:v0.32.5
+        objectStorageConfig:
+          existingSecret:
+            name: thanos-objstore-secret
+            key: objstore.yml
+      resources:
+        requests:
+          cpu: 150m
+          memory: 1Gi
+        limits:
+          memory: 2Gi
