@@ -20,7 +20,7 @@ grafana:
     dashboardproviders.yaml:
       apiVersion: 1
       providers:
-        - name: "default"
+        - name: default
           orgId: 1
           folder: ""
           type: file
@@ -28,6 +28,46 @@ grafana:
           editable: true
           options:
             path: /var/lib/grafana/dashboards/default
+        - name: services
+          orgId: 1
+          folder: "Services"
+          type: file
+          disableDeletion: false
+          editable: true
+          options:
+            path: /var/lib/grafana/dashboards/services
+        - name: storage
+          orgId: 1
+          folder: Storage
+          type: file
+          disableDeletion: false
+          editable: true
+          options:
+            path: /var/lib/grafana/dashboards/storage
+        - name: kubernetes
+          orgId: 1
+          folder: Kubernetes
+          type: file
+          disableDeletion: false
+          editable: true
+          options:
+            path: /var/lib/grafana/dashboards/kubernetes
+        - name: nginx
+          orgId: 1
+          folder: Nginx
+          type: file
+          disableDeletion: false
+          editable: true
+          options:
+            path: /var/lib/grafana/dashboards/nginx
+        - name: monitoring
+          orgId: 1
+          folder: Monitoring
+          type: file
+          disableDeletion: false
+          editable: true
+          options:
+            path: /var/lib/grafana/dashboards/monitoring
   datasources:
     datasources.yaml:
       apiVersion: 1
@@ -49,7 +89,7 @@ grafana:
       #     maxLines: 1000
 
   dashboards:
-    apps:
+    services:
       cloudflared:
         gnetId: 17457
         datasource:
