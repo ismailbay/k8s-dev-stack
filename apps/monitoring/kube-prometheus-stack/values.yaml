@@ -116,12 +116,7 @@ kube-prometheus-stack:
             resources:
               requests:
                 storage: 20Gi
-      thanos:
-        image: quay.io/thanos/thanos:v0.32.5
-        objectStorageConfig:
-          existingSecret:
-            name: thanos-objstore-secret
-            key: objstore.yml
+      thanos: {} # TODO: configure with MINIO as cheap and long term storage
       resources:
         requests:
           cpu: 150m
