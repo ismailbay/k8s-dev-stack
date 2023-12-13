@@ -1,3 +1,0 @@
-promtail:
-  serviceMonitor:
-    enabled: true
