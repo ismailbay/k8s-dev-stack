@@ -5,9 +5,6 @@ grafana:
     GF_FEATURE_TOGGLES_ENABLE: publicDashboards
     GF_SERVER_ROOT_URL: https://grafana.ismailbay.dev
 
-  deploymentStrategy:
-    type: Recreate
-
   admin:
     existingSecret: grafana-admin-secret
 
