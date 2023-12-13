@@ -5,6 +5,9 @@ grafana:
     GF_FEATURE_TOGGLES_ENABLE: publicDashboards
     GF_SERVER_ROOT_URL: https://grafana.ismailbay.dev
 
+  deploymentStrategy:
+    type: Recreate
+
   admin:
     existingSecret: grafana-admin-secret
 
@@ -92,13 +95,16 @@ grafana:
     services:
       cloudflared:
         gnetId: 17457
+        revision: 6
         datasource:
           - {name: DS_PROMETHEUS, value: Prometheus}
       external-dns:
         gnetId: 15038
+        revision: 3
         datasource: Prometheus
       node-exporter-full:
         gnetId: 1860
+        revision: 33
         datasource: Prometheus
       cert-manager:
         url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/cert-manager/dashboards/cert-manager.json
@@ -119,25 +125,22 @@ grafana:
     #   truenas:?
     kubernetes:
       kubernetes-api-server:
-        gnetId: 15761
+        url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-system-api-server.json
         datasource: Prometheus
       kubernetes-coredns:
-        gnetId: 15762
+        url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-system-coredns.json
         datasource: Prometheus
       kubernetes-global:
-        gnetId: 15757
+        url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-global.json
         datasource: Prometheus
       kubernetes-namespaces:
-        gnetId: 15758
+        url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-namespaces.json
         datasource: Prometheus
       kubernetes-nodes:
-        gnetId: 15759
+        url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-nodes.json
         datasource: Prometheus
       kubernetes-pods:
-        gNetId: 15760
-        datasource: Prometheus
-      kubernetes-volumes:
-        gnetId: 11454
+        url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-pods.json
         datasource: Prometheus
     nginx:
       nginx:
