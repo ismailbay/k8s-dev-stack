@@ -1,0 +1,46 @@
+velero:
+  configuration:
+    extraEnvVars:
+      TZ: "Europe/Vienna"
+    backupStorageLocation:
+      - name: default
+        bucket: k8s-dev-stack-velero
+        provider: aws
+        default: true
+        config:
+          region: eu-west-2
+    resticTimeout: 4h
+  credentials:
+    existingSecret: velero-minio-credentials
+  schedules:
+    daily-backup:
+      # daily, before I start breaking things
+      schedule: "0 8 * * *"
+      template:
+        ttl: "168h"
+    weekly-backup:
+      # weekly on fridays, bad things usually happen at the weekend :)
+      schedule: "0 8 * * 5"
+      template:
+        ttl: "338h"
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+    # TODO: add prometheusRules
+  backupsEnabled: true
+  snapshotsEnabled: false
+  upgradeCRDs: false
+  cleanUpCRDs: false
+  kubectl:
+    image:
+      repository: docker.io/bitnami/kubectl
+      tag: 1.27.8
+  deployNodeAgent: false
+  initContainers:
+    - name: velero-plugin-for-aws
+      image: velero/velero-plugin-for-aws:v1.7.1
+      imagePullPolicy: IfNotPresent
+      volumeMounts:
+        - mountPath: /target
+          name: plugins

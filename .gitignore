@@ -117,8 +117,9 @@ $RECYCLE.BIN/
 *.pub
 *.key
 .github.env
-secrets.yml
-secrets.yaml
+*secret*
+!secrets.enc.yaml
+!external-secrets
 
 # nix
 #flake.lock
