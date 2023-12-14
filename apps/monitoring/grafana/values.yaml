@@ -116,9 +116,21 @@ grafana:
       cert-manager:
         url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/cert-manager/dashboards/cert-manager.json
         datasource: Prometheus
+      sealed-secrets:
+        url: https://raw.githubusercontent.com/bitnami-labs/sealed-secrets/master/contrib/prometheus-mixin/dashboards/sealed-secrets-controller.json
+        datasource: Prometheus
+      velero-exporter:
+        gnetId: 15469
+        revision: 1
+        datasource: Prometheus
+      velero-stats:
+        gnetId: 16829
+        revision: 5
+        datasource: Prometheus
     storage:
       longhorn:
         gnetId: 16888
+        revision: 8
         datasource:
           - {name: DS_PROMETHEUS, value: Prometheus}
     # infra:
