@@ -1,0 +1,9 @@
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: mqtt-on-truenas
+  namespace: monitoring
+spec:
+  static_configs:
+    - targets: ["mqtt-exporter:3321"]
