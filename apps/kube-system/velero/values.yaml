@@ -21,11 +21,15 @@ velero:
       schedule: "0 8 * * *"
       template:
         ttl: "168h"
+      annotations:
+        backup-interval: daily
     weekly-backup:
       # weekly on fridays, bad things usually happen at the weekend :)
       schedule: "0 8 * * 5"
       template:
         ttl: "338h"
+      annotations:
+        backup-interval: weekly
   metrics:
     enabled: true
     serviceMonitor:
