@@ -18,7 +18,7 @@ velero:
   schedules:
     daily-backup:
       # daily, before I start breaking things
-      schedule: "50 17 * * *"
+      schedule: "0 18 * * *"
       template:
         ttl: "168h"
       annotations:
