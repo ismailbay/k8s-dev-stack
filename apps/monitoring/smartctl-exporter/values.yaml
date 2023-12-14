@@ -4,7 +4,7 @@ prometheus-smartctl-exporter:
   config:
     devices:
       - /dev/nvme0n1
-    serviceMonitor:
-      enabled: true
-    prometheusRules:
-      enabled: false
+  serviceMonitor:
+    enabled: true
+  prometheusRules:
+    enabled: false
