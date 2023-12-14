@@ -9,6 +9,9 @@ velero:
         default: true
         config:
           region: eu-west-2
+          s3ForcePathStyle: true
+          s3Url: "http://minio.ibay.dev:9000"
+          publicUrl: https://s3.ismailbay.dev
     resticTimeout: 4h
   credentials:
     existingSecret: velero-minio-credentials
