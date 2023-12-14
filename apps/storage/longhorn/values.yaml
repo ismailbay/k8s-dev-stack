@@ -3,7 +3,7 @@ longhorn:
     defaultClassReplicaCount: 2
   defaultSettings:
     defaultReplicaCount: 2
-    backupTarget: s3://k8s-dev-stack-velero@minio/longhorn
+    backupTarget: s3://longhorn-backups@minio/longhorn-backups
     backupTargetCredentialSecret: longhorn-minio-credentials
   ingress:
     enabled: true
