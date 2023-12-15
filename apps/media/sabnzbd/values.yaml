@@ -1,7 +1,6 @@
 app-template:
   controllers:
     main:
-      type: statefulset
       containers:
         main:
           image:
@@ -49,14 +48,6 @@ app-template:
           fsGroup: 568
           fsGroupChangePolicy: OnRootMismatch
           supplementalGroups: [10000]
-      statefulset:
-        volumeClaimTemplates:
-          - name: config
-            accessMode: ReadWriteOnce
-            size: 1Gi
-            storageClass: longhorn
-            globalMounts:
-              - path: /config
   service:
     main:
       ports:
@@ -82,15 +73,16 @@ app-template:
             - *host
           secretName: sabnzbd-tls
   persistence:
+    config:
+      existingClaim: sabnzbd-config
+      globalMounts:
+        - path: /config
     media:
       type: nfs
       server: 192.168.20.50
       path: /mnt/tank/media
       globalMounts:
-        - path: /mnt/media
+        - path: /media
     incomplete:
-      type: nfs
-      server: 192.168.20.50
-      path: /mnt/tank/garbage
-      globalMounts:
-        - path: /mnt/downloads
+      enabled: true
+      type: emptyDir
