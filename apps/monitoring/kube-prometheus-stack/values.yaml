@@ -104,6 +104,8 @@ kube-prometheus-stack:
       scrapeConfigSelectorNilUsesHelmValues: false
       enableAdminAPI: true
       walCompression: true
+      evaluationInterval: 60s
+      scrapeInterval: 60s
       retention: 2d
       retentionSize: 15GB
       enableFeatures:
