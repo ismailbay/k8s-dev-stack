@@ -74,9 +74,14 @@ app-template:
           secretName: sabnzbd-tls
   persistence:
     config:
+      enabled: true
+      storageClass: longhorn
       existingClaim: sabnzbd-config
-      globalMounts:
-        - path: /config
+      retain: true
+      advancedMounts:
+        main:
+          main:
+            - path: /config
     media:
       type: nfs
       server: 192.168.20.50
