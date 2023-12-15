@@ -70,14 +70,14 @@ grafana:
           editable: true
           options:
             path: /var/lib/grafana/dashboards/nginx
-        - name: monitoring
-          orgId: 1
-          folder: Monitoring
-          type: file
-          disableDeletion: false
-          editable: true
-          options:
-            path: /var/lib/grafana/dashboards/monitoring
+        # - name: monitoring
+        #   orgId: 1
+        #   folder: Monitoring
+        #   type: file
+        #   disableDeletion: false
+        #   editable: true
+        #   options:
+        #     path: /var/lib/grafana/dashboards/monitoring
   datasources:
     datasources.yaml:
       apiVersion: 1
@@ -113,20 +113,20 @@ grafana:
         gnetId: 1860
         revision: 33
         datasource: Prometheus
-      cert-manager:
-        url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/cert-manager/dashboards/cert-manager.json
-        datasource: Prometheus
-      sealed-secrets:
-        url: https://raw.githubusercontent.com/bitnami-labs/sealed-secrets/master/contrib/prometheus-mixin/dashboards/sealed-secrets-controller.json
-        datasource: Prometheus
-      velero-exporter:
-        gnetId: 15469
-        revision: 1
-        datasource: Prometheus
-      velero-stats:
-        gnetId: 16829
-        revision: 5
-        datasource: Prometheus
+      # cert-manager:
+      #   url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/cert-manager/dashboards/cert-manager.json
+      #   datasource: Prometheus
+      # sealed-secrets:
+      #   url: https://raw.githubusercontent.com/bitnami-labs/sealed-secrets/master/contrib/prometheus-mixin/dashboards/sealed-secrets-controller.json
+      #   datasource: Prometheus
+      # velero-exporter:
+      #   gnetId: 15469
+      #   revision: 1
+      #   datasource: Prometheus
+      # velero-stats:
+      #   gnetId: 16829
+      #   revision: 5
+      #   datasource: Prometheus
     storage:
       longhorn:
         gnetId: 16888
@@ -168,10 +168,10 @@ grafana:
       nginx-request-handling-performance:
         url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/grafana/dashboards/request-handling-performance.json
         datasource: Prometheus
-    monitoring:
-      prometheus:
-        gnetId: 19105
-        datasource: Prometheus
+    # monitoring:
+    #   prometheus:
+    #     gnetId: 19105
+    #     datasource: Prometheus
   sidecar:
     dashboards:
       enabled: true
