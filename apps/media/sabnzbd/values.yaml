@@ -82,3 +82,12 @@ app-template:
         main:
           main:
             - path: /config
+    downloads:
+      type: nfs
+      server: 192.168.20.50
+      path: /mnt/tank/media/downloads
+      globalMounts:
+        - path: /downloads
+    incomplete:
+      enabled: true
+      type: emptyDir
