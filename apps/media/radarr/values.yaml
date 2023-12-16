@@ -11,6 +11,7 @@ app-template:
             RADARR__PORT: &port 80
             RADARR__INSTANCE_NAME: Radarr
             RADARR__LOG_LEVEL: warn
+            RADARR__AUTHENTICATION_REQUIRED: DisabledForLocalAddresses
             RADARR__HOST_WHITELIST_ENTRIES: >-
               radarr,
               radarr.default,
@@ -27,7 +28,7 @@ app-template:
               custom: true
               spec:
                 httpGet:
-                  path: /api?mode=version
+                  path: /ping
                   port: *port
                 initialDelaySeconds: 0
                 periodSeconds: 10
