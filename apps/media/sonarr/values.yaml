@@ -77,19 +77,10 @@ app-template:
         main:
           main:
             - path: /config
-    tv:
+    media:
       enabled: true
       type: nfs
       server: 192.168.20.50
       path: /mnt/tank/media
       globalMounts:
-        - path: /tv
-          subPath: tv
-    downloads:
-      enabled: true
-      type: nfs
-      server: 192.168.20.50
-      path: /mnt/tank/garbage
-      globalMounts:
-        - path: /downloads
-          subPath: tv
+        - path: /mnt/media

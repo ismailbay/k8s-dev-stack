@@ -90,11 +90,4 @@ app-template:
       server: 192.168.20.50
       path: /mnt/tank/media
       globalMounts:
-        - path: /media
-    downloads:
-      enabled: true
-      type: nfs
-      server: 192.168.20.50
-      path: /mnt/tank/garbage
-      globalMounts:
-        - path: /downloads
+        - path: /mnt/media
