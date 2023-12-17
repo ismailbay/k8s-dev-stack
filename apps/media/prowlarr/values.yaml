@@ -57,7 +57,7 @@ app-template:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt
-        hajimari.io/icon: mdi:movie-roll
+        hajimari.io/icon: mdi:movie-search
       hosts:
         - host: &host prowlarr.ismailbay.dev
           paths:
