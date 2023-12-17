@@ -4,17 +4,18 @@ app-template:
       containers:
         main:
           image:
-            repository: ghcr.io/onedr0p/radarr-develop
-            tag: 4.7.5.7809@sha256:f2044d2e8bd2e8d24e8a79f051404be80400f450a94b4c481cbc93cfeffbe745
+            repository: ghcr.io/onedr0p/prowlarr-develop
+            tag: 1.11.1.4146@sha256:c7ad70aaf1dae541ec0fdae0a449cbfcab1e2dd31c46e92f758b4006bfef4a53
           env:
             TZ: Europe/Vienna
-            RADARR__PORT: &port 80
-            RADARR__INSTANCE_NAME: Radarr
-            RADARR__LOG_LEVEL: warn
-            RADARR__AUTHENTICATION_REQUIRED: DisabledForLocalAddresses
+            PROWLARR__PORT: &port 9696
+            PROWLARR__INSTANCE_NAME: Prowlarr
+            PROWLARR__LOG_LEVEL: warn
+            PROWLARR__ANALYTICS_ENABLED: "False"
+            PROWLARR__AUTHENTICATION_REQUIRED: DisabledForLocalAddresses
           envFrom:
             - secretRef:
-                name: radarr-secret
+                name: prowlarr-secret
           probes:
             liveness: &probes
               enabled: true
@@ -58,7 +59,7 @@ app-template:
         cert-manager.io/cluster-issuer: letsencrypt
         hajimari.io/icon: mdi:movie-roll
       hosts:
-        - host: &host radarr.ismailbay.dev
+        - host: &host prowlarr.ismailbay.dev
           paths:
             - path: /
               service:
@@ -67,12 +68,12 @@ app-template:
       tls:
         - hosts:
             - *host
-          secretName: radarr-tls
+          secretName: prowlarr-tls
   persistence:
     config:
       enabled: true
       storageClass: longhorn
-      existingClaim: radarr-config
+      existingClaim: prowlarr-config
       retain: true
       advancedMounts:
         main:
