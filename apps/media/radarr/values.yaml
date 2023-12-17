@@ -8,8 +8,9 @@ app-template:
             tag: 4.7.5.7809@sha256:f2044d2e8bd2e8d24e8a79f051404be80400f450a94b4c481cbc93cfeffbe745
           env:
             TZ: Europe/Vienna
-            RADARR__PORT: &port 80
+            RADARR__PORT: &port 7878
             RADARR__INSTANCE_NAME: Radarr
+            RADARR__APPLICATION_URL: "https://radarr.ismailbay.dev"
             RADARR__LOG_LEVEL: warn
             RADARR__AUTHENTICATION_REQUIRED: DisabledForLocalAddresses
           envFrom:
