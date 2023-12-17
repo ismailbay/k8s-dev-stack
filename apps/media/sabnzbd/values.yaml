@@ -47,7 +47,8 @@ app-template:
           runAsNonRoot: true
           fsGroup: 568
           fsGroupChangePolicy: OnRootMismatch
-          supplementalGroups: [10000]
+          supplementalGroups:
+            - 65539
   service:
     main:
       ports:
