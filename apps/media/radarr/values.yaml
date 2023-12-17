@@ -84,14 +84,13 @@ app-template:
         main:
           main:
             - path: /config
-    movies:
+    media:
       enabled: true
       type: nfs
       server: 192.168.20.50
       path: /mnt/tank/media
       globalMounts:
-        - path: /movies
-          subPath: movies
+        - path: /media
     downloads:
       enabled: true
       type: nfs
@@ -99,4 +98,3 @@ app-template:
       path: /mnt/tank/garbage
       globalMounts:
         - path: /downloads
-          subPath: movies
