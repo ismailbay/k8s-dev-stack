@@ -52,4 +52,4 @@ app-template:
       existingClaim: jellyseerr-config
       retain: true
       globalMounts:
-        - path: /config
+        - path: /app/config
