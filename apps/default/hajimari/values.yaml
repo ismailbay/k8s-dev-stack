@@ -9,23 +9,25 @@ hajimari:
     showAppGroups: false
     showAppStatus: true
     showAppUrls: false
-    showAppInfo: true
+    showAppInfo: false
     defaultAppIcon: mdi:application
     namespaceSelector:
       any: true
     customApps:
-      - name: OpenWrt
-        url: "http://192.168.1.1"
-        icon: simple-icons:openwrt
-      - name: Cloudflare
-        url: "https://dash.cloudflare.com"
-        icon: simple-icons:cloudflare
-      - name: Minio
-        url: "https://minio.ibay.dev"
-        icon: simple-icons:minio
-      - name: Proxmox
-        url: "http://192.168.20.100:8006"
-        icon: simple-icons:proxmox
+      - group: Infra
+        apps:
+          - name: OpenWrt
+            url: "http://192.168.1.1"
+            icon: simple-icons:openwrt
+          - name: Cloudflare
+            url: "https://dash.cloudflare.com"
+            icon: simple-icons:cloudflare
+          - name: Minio
+            url: "https://minio.ibay.dev"
+            icon: simple-icons:minio
+          - name: Proxmox
+            url: "http://192.168.20.100:8006"
+            icon: simple-icons:proxmox
     globalBookmarks:
       - group: Me
         bookmarks:
@@ -66,7 +68,7 @@ hajimari:
           hosts:
             - *host
   persistence:
-    data:
+    config:
       enabled: true
       storageClass: longhorn
       size: 1Gi
