@@ -83,4 +83,4 @@ app-template:
       server: 192.168.20.50
       path: /mnt/tank/media
       globalMounts:
-        - path: /mnt/media
+        - path: /media
