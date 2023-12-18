@@ -59,9 +59,18 @@ resource "proxmox_virtual_environment_vm" "debian_vm" {
     bridge      = "vmbr0"
   }
 
+  # nvme
   hostpci {
     device = "hostpci0"
     id     = "0000:01:00.0"
+    rombar = true
+    pcie   = true
+  }
+
+  # iGPU
+  hostpci {
+    device = "hostpci1"
+    id     = "0000:00:02"
     rombar = true
     pcie   = true
   }

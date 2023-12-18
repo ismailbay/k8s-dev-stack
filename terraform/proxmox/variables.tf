@@ -8,7 +8,7 @@ variable "common" {
     vm_template = "debian-cloud"
     cores       = 4
     pv_lvm      = "local-lvm"
-    disk0       = "30"
+    disk0       = "130"
   }
 }
 
