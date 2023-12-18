@@ -40,7 +40,7 @@ app-template:
           fsGroupChangePolicy: OnRootMismatch
           supplementalGroups:
             - 44  # video
-            - 109  # render
+            - 104  # render
             - 65539 # docker
   service:
     main:
