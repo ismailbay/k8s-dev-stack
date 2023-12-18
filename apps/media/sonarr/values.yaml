@@ -57,6 +57,7 @@ app-template:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt
+        hajimari.io/group: Media
         hajimari.io/icon: mdi:television-box
       hosts:
         - host: &host sonarr.ismailbay.dev

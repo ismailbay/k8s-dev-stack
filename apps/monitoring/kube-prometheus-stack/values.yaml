@@ -83,6 +83,7 @@ kube-prometheus-stack:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt
         hajimari.io/appName: Prometheus
+        hajimari.io/group: Monitoring
         hajimari.io/icon: simple-icons:prometheus
       hosts:
         - &host prometheus.ismailbay.dev

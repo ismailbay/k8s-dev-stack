@@ -10,7 +10,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     hajimari.io/appName: Argo CD
-    hajimari.io/icon: jellyfish
+    hajimari.io/icon: simple-icons:argo
 spec:
   ingressClassName: nginx
   rules:

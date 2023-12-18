@@ -6,14 +6,19 @@ hajimari:
     alwaysTargetBlank: true
     lightTheme: tron
     darkTheme: tron
-    showAppGroups: false
-    showAppStatus: true
+    showAppGroups: true
+    showAppStatus: false
     showAppUrls: false
     showAppInfo: false
     defaultAppIcon: mdi:application
     namespaceSelector:
       any: true
     customApps:
+      - group: Storage
+        apps:
+          - name: Minio
+            url: "https://minio.ibay.dev"
+            icon: simple-icons:minio
       - group: Infra
         apps:
           - name: OpenWrt
@@ -22,9 +27,6 @@ hajimari:
           - name: Cloudflare
             url: "https://dash.cloudflare.com"
             icon: simple-icons:cloudflare
-          - name: Minio
-            url: "https://minio.ibay.dev"
-            icon: simple-icons:minio
           - name: Proxmox
             url: "http://192.168.20.100:8006"
             icon: simple-icons:proxmox
@@ -68,7 +70,7 @@ hajimari:
           hosts:
             - *host
   persistence:
-    config:
+    data:
       enabled: true
       storageClass: longhorn
       size: 1Gi

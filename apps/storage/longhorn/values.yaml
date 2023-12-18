@@ -10,6 +10,7 @@ longhorn:
     ingressClassName: nginx
     annotations:
       hajimari.io/appName: Longhorn
+      hajimari.io/group: Storage
       hajimari.io/icon: game-icons:bull-horns
       cert-manager.io/cluster-issuer: letsencrypt
     host: longhorn.ismailbay.dev

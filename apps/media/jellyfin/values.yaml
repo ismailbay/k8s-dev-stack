@@ -57,6 +57,7 @@ app-template:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt
+        hajimari.io/group: Media
         hajimari.io/icon: simple-icons:jellyfin
       hosts:
         - host: &host jellyfin.ismailbay.dev

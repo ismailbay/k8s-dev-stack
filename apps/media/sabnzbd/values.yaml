@@ -60,6 +60,7 @@ app-template:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt
+        hajimari.io/group: Media
         hajimari.io/icon: mdi:cloud-download
       hosts:
         - host: &host sabnzbd.ismailbay.dev
