@@ -1,0 +1,6 @@
+snapshot-controller:
+  controller:
+    serviceMonitor:
+      create: true
+  webhook:
+    enabled: false
