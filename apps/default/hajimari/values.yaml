@@ -70,6 +70,8 @@ hajimari:
         - secretName: hajimari-tls
           hosts:
             - *host
+  podAnnotations:
+    configmap.reloader.stakater.com/reload: "hajimari-settings"
   persistence:
     data:
       enabled: true

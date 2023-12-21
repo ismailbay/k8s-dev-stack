@@ -1,0 +1,6 @@
+reloader:
+  fullnameOverride: reloader
+  reloader:
+    readOnlyRootFileSystem: true
+    podMonitor:
+      enabled: true
