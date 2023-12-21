@@ -20,7 +20,7 @@ variable "nodes" {
       macaddr         = "02:DE:4D:48:28:10"
       ip4_addr        = "192.168.20.110/24"
       node_name       = "m720q-01"
-      memory          = 12288
+      memory          = 28672
       clone_vm_id     = "9000"
       clone_node_name = "m720q-01"
     },
@@ -38,7 +38,7 @@ variable "nodes" {
       macaddr         = "02:DE:4D:48:28:12"
       ip4_addr        = "192.168.20.112/24"
       node_name       = "m720q-03"
-      memory          = 6144
+      memory          = 12288
       clone_vm_id     = "9002"
       clone_node_name = "m720q-03"
     }
