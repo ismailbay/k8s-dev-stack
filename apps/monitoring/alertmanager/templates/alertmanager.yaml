@@ -5,4 +5,4 @@ metadata:
   name: alertmanager-configmap
   namespace: monitoring
 data:
-{{ (.Files.Glob "config/alertmanager.yaml").AsConfig | indent 2 }}
+{{ (.Files.Glob "config/alertmanager.yml").AsConfig | indent 2 }}
