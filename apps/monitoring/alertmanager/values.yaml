@@ -1,0 +1,53 @@
+alertmanager:
+  controllers:
+    main:
+      type: statefulset
+      annotations:
+        reloader.stakater.com/auto: "true"
+      statefulset:
+        volumeClaimTemplates:
+          - name: storage
+            accessMode: ReadWriteOnce
+            size: 100Mi
+            storageClass: longhorn
+            globalMounts:
+              - path: /alertmanager
+      containers:
+        main:
+          image:
+            repository: quay.io/prometheus/alertmanager
+            tag: v0.26.0
+          ports:
+            - name: http
+              containerPort: 9093
+  service:
+    main:
+      ports:
+        http:
+          port: 9093
+  ingress:
+    main:
+      enabled: true
+      className: nginx
+      hosts:
+        - host: &host alertmanager.ismailbay.dev
+          paths:
+            - path: /
+              service:
+                name: main
+                port: http
+      tls:
+        - hosts:
+            - *host
+  persistence:
+    config:
+      enabled: true
+      type: configMap
+      name: alertmanager-configmap
+      globalMounts:
+        - path: /etc/alertmanager
+    secrets:
+      type: secret
+      name: alertmanager-secret
+      globalMounts:
+        - path: /etc/secrets

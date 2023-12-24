@@ -1,0 +1,8 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: alertmanager-configmap
+  namespace: monitoring
+data:
+{{ (.Files.Glob "config/alertmanager.yaml").AsConfig | indent 2 }}
