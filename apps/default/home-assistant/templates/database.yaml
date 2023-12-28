@@ -43,7 +43,7 @@ spec:
   #       name: repo1
   #       s3:
   #         bucket: "crunchy-postgres"
-  #         endpoint: "192.168.20.50"
+  #         endpoint: "http://minio.ibay.dev:9000"
   #         region: "eu-west-2"
   backups:
     pgbackrest:
@@ -68,5 +68,5 @@ spec:
             differential: "0 1 * * 1-6"
           s3:
             bucket: "crunchy-postgres"
-            endpoint: "192.168.20.50"
+            endpoint: "http://minio.ibay.dev:9000"
             region: "eu-west-2"
