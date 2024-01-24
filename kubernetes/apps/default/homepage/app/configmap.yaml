@@ -7,71 +7,220 @@ metadata:
     app.kubernetes.io/name: homepage
 data:
   bookmarks.yaml: |
-    - Communitcate:
-        - Discord:
-            - icon: discord.png
-              href: https://discord.com/app
-    - Media:
-        - YouTube:
-            - icon: youtube.png
-              href: https://youtube.com/feed/subscriptions
-    - Reading:
-        - Reddit:
-            - icon: reddit.png
-              href: https://reddit.com
     - Git:
-        - kubesearch:
-            - icon: kubernetes-dashboard.png
-              href: https://kubesearch.dev
-        - flux-cluster-template:
-            - icon: github.png
-              href: https://github.com/onedr0p/flux-cluster-template
+      - icon: github-light.png
+        href: https://github.com/ismailbay
+    - Dev.to
+      - href: https://dev.to
+        icon: si-devdotto
+    - CNCF:
+      - href: https://www.cncf.io
+        icon: si-cncf
+    - Devhints:
+      - href: https://devhints.io
+        abbr: DH
+    - Reddit:
+      - icon: reddit.png
+        href: http://reddit.com/r/homelab
+    - kubesearch:
+      - icon: kubernetes-dashboard.png
+        href: https://kubesearch.dev
   docker.yaml: ""
   kubernetes.yaml: |
     mode: cluster
   services.yaml: |
-    - Network:
-        - Cloudflared:
-            href: https://dash.cloudflare.com
-            icon: cloudflare-zero-trust.png
-            description: Cloudflared Tunnel
+    - Power Consumption:
+        - Server Room:
+            icon: mdi-meter-electric-outline
+            href: https://hass.ibay.dev
+            widget:
+              type: homeassistant
+              url: https://hass.ibay.dev
+              key: "{{HOMEPAGE_VAR_HASS_API_TOKEN}}"
+              custom:
+                - state: sensor.server_energy_power
+                  label: Now
+                - state: sensor.server_energy_today
+                  label: Today
+                - state: sensor.server_energy_yesterday
+                  label: Yesterday
+                - state: sensor.server_energy_total
+                  label: Total
+        - Office:
+            icon: mdi-meter-electric-outline
+            href: https://hass.ibay.dev
+            widget:
+              type: homeassistant
+              url: https://hass.ibay.dev
+              key: "{{HOMEPAGE_VAR_HASS_API_TOKEN}}"
+              custom:
+                - state: sensor.pc_energy_power
+                  label: Now
+                - state: sensor.pc_energy_today
+                  label: Today
+                - state: sensor.pc_energy_yesterday
+                  label: Yesterday
+                - state: sensor.pc_energy_total
+                  label: Total
+        - TV:
+            icon: mdi-meter-electric-outline
+            href: https://hass.ibay.dev
+            widget:
+              type: homeassistant
+              url: https://hass.ibay.dev
+              key: "{{HOMEPAGE_VAR_HASS_API_TOKEN}}"
+              custom:
+                - state: sensor.tv_energy_power
+                  label: Now
+                - state: sensor.tv_energy_today
+                  label: Today
+                - state: sensor.tv_energy_yesterday
+                  label: Yesterday
+                - state: sensor.tv_energy_total
+                  label: Total
+    - Infrastructure:
+        - Proxmox:
+            href: https://m720q-01.ibay.dev:8006
+            icon: proxmox.png
+            widget:
+              type: proxmox
+              url: https://m720q-01.ibay.dev:8006
+              username: "{{HOMEPAGE_VAR_PROXMOX_API_TOKEN}}"
+              password: "{{HOMEPAGE_VAR_PROXMOX_API_TOKEN_PASSWORD}}"
+              fields: ["vms", "resources.cpu", "resources.mem"]
+        - TrueNAS:
+            href: https://truenas.ibay.dev
+            icon: truenas.png
+            widget:
+              type: truenas
+              url: https://truenas.ibay.dev:444
+              key: "{{HOMEPAGE_VAR_TRUENAS_API_TOKEN}}"
+        - OpenWRT:
+            href: http://192.168.1.1
+            icon: openwrt.png
+        - Traefik TrueNAS:
+            href: http://traefik.ibay.dev:9000/dashboard/#/
+            widget:
+              type: traefik
+              url: http://traefik.ibay.dev:9000
+        - Cloudflare:
+            icon: cloudflare.png
+            href: https://dash.cloudflare.com/
             widget:
               type: cloudflared
               accountid: "{{HOMEPAGE_VAR_CLOUDFLARED_ACCOUNTID}}"
               tunnelid: "{{HOMEPAGE_VAR_CLOUDFLARED_TUNNELID}}"
               key: "{{HOMEPAGE_VAR_CLOUDFLARED_API_TOKEN}}"
+        - PiHole:
+            icon: pi-hole.png
+            href: http://192.168.1.2/admin
+            widget:
+              type: pihole
+              url: http://192.168.1.2
+              key: "{{HOMEPAGE_VAR_PIHOLE_API_TOKEN}}"
+
+    - Selfhosted:
+        - Paperless:
+            icon: paperless.png
+            href: https://paperless.ibay.dev
+            widget:
+              type: paperlessngx
+              url: https://paperless.ibay.dev
+              key: "{{HOMEPAGE_VAR_PAPERLESS_API_TOKEN}}"
+        - Gitea:
+            icon: gitea.png
+            href: https://git.ibay.dev
+        - MinIO:
+            icon: minio-light.png
+            href: https://minio.ibay.dev
+        - Home Assistant:
+            icon: home-assistant.png
+            href: https://hass.ibay.dev
+    - Media:
+        - Jellyfin:
+            icon: jellyfin.png
+            href: https://jellyfin.ibay.dev
+            widget:
+              type: jellyfin
+              url: https://jellyfin.ibay.dev
+              key: "{{HOMEPAGE_VAR_JELLYFIN_API_TOKEN}}"
+              enableNowPlaying: true
+        - Requests:
+            icon: jellyseerr.png
+            href: https://jellyseerr.ibay.dev
+            widget:
+              type: jellyseerr
+              url: https://jellyseerr.ibay.dev
+              key: "{{HOMEPAGE_VAR_JELLYSEERR_API_TOKEN}}"
+        - Radarr:
+            icon: radarr.png
+            href: https://radarr.ibay.dev
+            widget:
+              type: radarr
+              url: https://radarr.ibay.dev
+              key: "{{HOMEPAGE_VAR_RADARR_API_TOKEN}}"
+        - Sonarr:
+            icon: sonarr.png
+            href: https://sonarr.ibay.dev
+            widget:
+              type: sonarr
+              url: https://sonarr.ibay.dev
+              key: "{{HOMEPAGE_VAR_SONARR_API_TOKEN}}"
+        - Downloads:
+            icon: sabnzbd.png
+            href: https://sabnzbd.ibay.dev
+            widget:
+              type: sabnzbd
+              url: https://sabnzbd.ibay.dev
+              key: "{{HOMEPAGE_VAR_SABNZBD_API_TOKEN}}"
+        - Indexers:
+            icon: prowlarr.png
+            href: https://prowlarr.ibay.dev
+            widget:
+              type: prowlarr
+              url: https://prowlarr.ibay.dev
+              key: "{{HOMEPAGE_VAR_PROWLARR_API_TOKEN}}"
+
   settings.yaml: |
-    title: Dashboard
+    title: Home Dashboard
     theme: dark
     color: slate
+    useEqualHeights: true
     headerStyle: clean
+    hideErrors: true
+    target: _blank
     layout:
-      Home:
-        style: column
-        icon: mdi-home-analytics
-      Network:
+      Power Consumption:
         style: row
         columns: 3
-        icon: mdi-server
-      Observability:
-        style: column
-        icon: mdi-chart-line
+      Infrastructure:
+        style: row
+        columns: 3
+      Selfhosted:
+        style: row
+        columns: 3
+      Media:
+        style: row
+        columns: 3
+    quicklaunch:
+    searchDescription: true
+    hideInternetSearch: true
+    hideVisitURL: true
   widgets.yaml: |
     - resources:
         backend: kubernetes
         cpu: true
         expanded: true
         memory: true
-    - search:
-        provider: ["duckduckgo"]
-        focus: false
-        target: _blank
-    - greeting:
-        text_size: xl
-        text: "Welcome!"
     - datetime:
-        text_size: l
+        text_size: xl
         format:
-          dateStyle: long
           timeStyle: short
           hourCycle: h23
+    - openmeteo:
+        latitude: "{{HOMEPAGE_VAR_OPENMETEO_LATITUDE}}"
+        longitude: "{{HOMEPAGE_VAR_OPENMETEO_LONGITUDE}}"
+        cache: 5
+    - search:
+        provider:
+          - duckduckgo
