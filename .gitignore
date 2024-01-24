@@ -140,7 +140,7 @@ $RECYCLE.BIN/
 *.key
 .github.env
 *secret*
-!secrets.sops.yaml
+!secret.sops.yaml
 !external-secrets
 
 # nix
