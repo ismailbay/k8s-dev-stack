@@ -8,7 +8,7 @@ spec:
   interval: 30m
   ref:
     branch: "main"
-  url: "https://git.ibay.dev/ismailbay/k8s-homelab.git"
+  url: "https://git.ibay.dev/ismailbay/k8s-dev-stack.git"
   ignore: |
     # exclude all
     /*
