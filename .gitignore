@@ -1,3 +1,25 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+# Trash
+.DS_Store
+Thumbs.db
+# k8s
+kubeconfig
+# Private
+.private
+# Ansible
+.venv*
+# Taskfile
+.task
+# Brew
+Brewfile.lock.json
+# intellij
+.idea
+# wiki
+wiki
+
 # ---> Terraform
 # Local .terraform directories
 **/.terraform/*
@@ -118,7 +140,7 @@ $RECYCLE.BIN/
 *.key
 .github.env
 *secret*
-!secrets.enc.yaml
+!secrets.sops.yaml
 !external-secrets
 
 # nix

@@ -1,6 +1,6 @@
 ---
 - name: Prepare System
-  hosts: all
+  hosts: kubernetes
   become: true
   gather_facts: true
   any_errors_fatal: true
@@ -9,28 +9,22 @@
       ansible.builtin.pause:
         seconds: 5
     - name: Populate service facts
-      service_facts:
+      ansible.builtin.service_facts:
   tasks:
     - name: Locale
       block:
         - name: Locale | Set timezone
           community.general.timezone:
-            name: "{{ timezone | default('Etc/UTC') }}"
+            name: "Europe/Vienna"
 
     - name: Packages
       block:
-        - name: Packages | Add non-free repository
-          ansible.builtin.apt_repository:
-            repo: deb http://deb.debian.org/debian/ stable main contrib non-free
-            filename: non-free
-            update_cache: true
         - name: Packages | Install
           ansible.builtin.apt:
-            name: i965-va-driver-shaders,apt-transport-https,ca-certificates,conntrack,curl,dirmngr,gdisk,
-              gnupg,hdparm,htop,intel-gpu-tools,intel-media-va-driver-non-free,iperf3,iptables,iputils-ping,ipvsadm,
-              jq,libseccomp2,lm-sensors,neofetch,net-tools,nfs-common,nvme-cli,open-iscsi,parted,psmisc,python3,
-              python3-apt,python3-kubernetes,python3-yaml,smartmontools,socat,software-properties-common,
-              unzip,util-linux
+            name: apt-transport-https,ca-certificates,conntrack,curl,dirmngr,gdisk,gnupg,hdparm,htop,
+              iptables,iputils-ping,ipvsadm,libseccomp2,lm-sensors,neofetch,net-tools,nfs-common,
+              nvme-cli,open-iscsi,parted,psmisc,python3,python3-apt,python3-kubernetes,python3-yaml,
+              smartmontools,socat,software-properties-common,unzip,util-linux
             install_recommends: false
 
     - name: User Configuration
@@ -60,35 +54,31 @@
             content: |
               127.0.0.1 localhost
               127.0.1.1 {{ inventory_hostname }}
+
               # The following lines are desirable for IPv6 capable hosts
               ::1     localhost ip6-localhost ip6-loopback
               ff02::1 ip6-allnodes
               ff02::2 ip6-allrouters
             dest: /etc/hosts
             mode: preserve
-        # https://github.com/cilium/cilium/issues/18706
-        - name: Network Configuration | Cilium (1)
-          ansible.builtin.lineinfile:
-            dest: /etc/systemd/networkd.conf
-            regexp: ManageForeignRoutingPolicyRules
-            line: ManageForeignRoutingPolicyRules=no
-        - name: Network Configuration | Cilium (2)
-          ansible.builtin.lineinfile:
-            dest: /etc/systemd/networkd.conf
-            regexp: ManageForeignRoutes
-            line: ManageForeignRoutes=no
         # https://github.com/onedr0p/flux-cluster-template/discussions/635
+        - name: Network Configuration | Remove immutable flag from /etc/resolv.conf
+          ansible.builtin.file:
+            attributes: -i
+            path: /etc/resolv.conf
         - name: Network Configuration | Remove /etc/resolv.conf
           ansible.builtin.file:
+            attributes: -i
             path: /etc/resolv.conf
             state: absent
-        - name: Network Configuration | Remove search domain
+        - name: Network Configuration | Add custom /etc/resolv.conf
           ansible.builtin.copy:
-            mode: 644
+            attributes: +i
+            mode: '0644'
             dest: /etc/resolv.conf
             content: |
               search .
-              nameserver {{ nameserver }}
+              nameserver 192.168.1.2
 
     - name: System Configuration
       notify: Reboot
@@ -110,17 +100,18 @@
             fstype: swap
             state: absent
           loop: ["none", "swap"]
-        - name: System Configuration | Kernel modules (1)
-          community.general.modprobe:
-            name: "{{ item }}"
-            state: present
-          loop: ["br_netfilter", "ceph", "ip_vs", "ip_vs_rr", "nbd", "overlay", "rbd"]
-        - name: System Configuration | Kernel modules (2)
+        - name: System Configuration | Create Kernel modules
           ansible.builtin.copy:
             dest: "/etc/modules-load.d/{{ item }}.conf"
             mode: "0644"
             content: "{{ item }}"
           loop: ["br_netfilter", "ceph", "ip_vs", "ip_vs_rr", "nbd", "overlay", "rbd"]
+          register: modules_status
+        - name: System Configuration | Reload Kernel modules # noqa: no-changed-when no-handler
+          when: modules_status.changed
+          ansible.builtin.systemd:
+            name: systemd-modules-load
+            state: restarted
         - name: System Configuration | Sysctl
           ansible.posix.sysctl:
             name: "{{ item.key }}"
@@ -154,11 +145,6 @@
             src: PARTUUID={{ data_partition_uuid.stdout_lines[0] }}
             fstype: ext4
             state: mounted
-        - name: Enable service httpd and ensure it is not masked
-          ansible.builtin.systemd_service:
-            name: iscsid
-            enabled: true
-            state: started
 
   handlers:
     - name: Reboot

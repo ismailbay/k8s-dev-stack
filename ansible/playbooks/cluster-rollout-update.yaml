@@ -1,7 +1,7 @@
 ---
 # https://github.com/kevincoakley/ansible-role-k8s-rolling-update
-- name: Cluster rolling update
-  hosts: all
+- name: Cluster rollout update
+  hosts: kubernetes
   become: true
   gather_facts: true
   any_errors_fatal: true
@@ -12,7 +12,7 @@
         seconds: 5
   tasks:
     - name: Details
-      ansible.builtin.command: "kubectl get node {{ inventory_hostname }} -o json"
+      ansible.builtin.command: "k3s kubectl get node {{ inventory_hostname }} -o json"
       register: kubectl_get_node
       delegate_to: "{{ groups['master'][0] }}"
       failed_when: false
@@ -45,9 +45,6 @@
             pod_selectors:
               # Rook Ceph
               - app!=rook-ceph-osd
-              # Longhorn
-              - app!=csi-attacher
-              - app!=csi-provisioner
           delegate_to: "{{ groups['master'][0] }}"
 
         - name: Update

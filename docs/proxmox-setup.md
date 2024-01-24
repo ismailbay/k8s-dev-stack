@@ -114,8 +114,8 @@ runcmd:
 ```
 
 ```bash
-BASE_IMAGE=https://cloud.debian.org/images/cloud/bookworm/20231013-1532/debian-12-generic-amd64-20231013-1532.qcow2
-VM_ID=9002
+BASE_IMAGE=https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-generic-amd64.qcow2
+VM_ID=9002 # increase by 1 and repeat on the next node
 
 cd /tmp
 wget -O debian-cloudinit.qcow2 $BASE_IMAGE
