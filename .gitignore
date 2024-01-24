@@ -140,8 +140,8 @@ $RECYCLE.BIN/
 *.key
 .github.env
 *secret*
-!secret.sops.yaml
-!external-secrets
+!*secret*.sops.yaml
+!*secrets*.sops.yaml
 
 # nix
 #flake.lock
