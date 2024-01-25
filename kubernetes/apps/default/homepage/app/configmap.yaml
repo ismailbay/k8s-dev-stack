@@ -222,11 +222,6 @@ data:
       hideInternetSearch: true
       hideVisitURL: true
   widgets.yaml: |
-    - resources:
-        backend: kubernetes
-        cpu: true
-        expanded: true
-        memory: true
     - datetime:
         text_size: xl
         format:
