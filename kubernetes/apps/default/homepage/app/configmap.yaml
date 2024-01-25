@@ -7,24 +7,38 @@ metadata:
     app.kubernetes.io/name: homepage
 data:
   bookmarks.yaml: |
-    - Git:
-      - icon: github-light.png
-        href: https://github.com/ismailbay
-    - Dev.to
-      - href: https://dev.to
-        icon: si-devdotto
-    - CNCF:
-      - href: https://www.cncf.io
-        icon: si-cncf
-    - Devhints:
-      - href: https://devhints.io
-        abbr: DH
-    - Reddit:
-      - icon: reddit.png
-        href: http://reddit.com/r/homelab
-    - kubesearch:
-      - icon: kubernetes-dashboard.png
-        href: https://kubesearch.dev
+    - Development:
+        - Github:
+            - href: https://github.com/ismailbay
+              icon: github-light.png
+        - Devhints:
+            - href: https://devhints.io
+              abbr: DH
+        - CNCF:
+            - href: https://cncf.io
+              icon: si-cncf
+        - kubesearch:
+            - icon: kubernetes-dashboard.png
+              href: https://kubesearch.dev
+
+    - Reading:
+        - Dev.to:
+            - href: https://dev.to
+              icon: si-devdotto
+        - Reddit:
+            - href: https://reddit.com/r/homelab
+              icon: reddit.png
+        - Coding Horror:
+            - href: https://blog.codinghorror.com
+              abbr: CH
+        - Kotlin Blog:
+            - href: https://blog.jetbrains.com/kotlin/
+              icon: kotlin.png
+    - Other:
+        - Youtube:
+            - href: https://www.youtube.com/feed/subscriptions
+              icon: youtube.png
+
   docker.yaml: ""
   kubernetes.yaml: |
     mode: cluster
