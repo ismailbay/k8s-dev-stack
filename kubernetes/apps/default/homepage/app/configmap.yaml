@@ -133,7 +133,32 @@ data:
               tunnelid: "{{HOMEPAGE_VAR_CLOUDFLARED_TUNNELID}}"
               key: "{{HOMEPAGE_VAR_CLOUDFLARED_API_TOKEN}}"
 
+    - Monitoring:
+        - Grafana:
+            icon: grafana.png
+            href: https://grafana.ismailbay.dev
+            widget:
+              type: grafana
+              url: http://grafana.observability
+              username: "{{HOMEPAGE_VAR_GRAFANA_USERNAME}}"
+              password: "{{HOMEPAGE_VAR_GRAFANA_PASSWORD}}"
+        - Prometheus:
+            icon: prometheus.png
+            href: https://prometheus.ismailbay.dev
+            widget:
+              type: prometheus
+              url: http://prometheus.observability
+        - Cilium:
+            icon: cilium.png
+            href: https://hubble.ismailbay.dev
+        - Kubernetes Dashboard:
+            icon: kubernetes-dashboard.png
+            href: https://kubernetes.ismailbay.dev
+
     - Selfhosted:
+        - Flux:
+            icon: flux-cd.png
+            href: https://gitops.ismailbay.dev
         - Paperless:
             icon: paperless.png
             href: https://paperless.ibay.dev
@@ -150,6 +175,7 @@ data:
         - Home Assistant:
             icon: home-assistant.png
             href: https://hass.ibay.dev
+
     - Media:
         - Jellyfin:
             icon: jellyfin.png
@@ -209,6 +235,9 @@ data:
         style: row
         columns: 3
       Infrastructure:
+        style: row
+        columns: 3
+      Monitoring:
         style: row
         columns: 3
       Selfhosted:
