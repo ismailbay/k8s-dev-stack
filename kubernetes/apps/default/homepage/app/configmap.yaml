@@ -93,6 +93,16 @@ data:
                 - state: sensor.tv_energy_total
                   label: Total
     - Infrastructure:
+        - OpenWRT:
+            href: http://192.168.1.1
+            icon: openwrt.png
+        - PiHole:
+            icon: pi-hole.png
+            href: http://192.168.1.2/admin
+            widget:
+              type: pihole
+              url: http://192.168.1.2
+              key: "{{HOMEPAGE_VAR_PIHOLE_API_TOKEN}}"
         - Proxmox:
             href: https://m720q-01.ibay.dev:8006
             icon: proxmox.png
@@ -109,9 +119,6 @@ data:
               type: truenas
               url: https://truenas.ibay.dev:444
               key: "{{HOMEPAGE_VAR_TRUENAS_API_TOKEN}}"
-        - OpenWRT:
-            href: http://192.168.1.1
-            icon: openwrt.png
         - Traefik TrueNAS:
             href: http://traefik.ibay.dev:9000/dashboard/#/
             widget:
@@ -125,13 +132,6 @@ data:
               accountid: "{{HOMEPAGE_VAR_CLOUDFLARED_ACCOUNTID}}"
               tunnelid: "{{HOMEPAGE_VAR_CLOUDFLARED_TUNNELID}}"
               key: "{{HOMEPAGE_VAR_CLOUDFLARED_API_TOKEN}}"
-        - PiHole:
-            icon: pi-hole.png
-            href: http://192.168.1.2/admin
-            widget:
-              type: pihole
-              url: http://192.168.1.2
-              key: "{{HOMEPAGE_VAR_PIHOLE_API_TOKEN}}"
 
     - Selfhosted:
         - Paperless:
@@ -202,6 +202,7 @@ data:
     useEqualHeights: true
     headerStyle: clean
     hideErrors: true
+    hideVersion: true
     target: _blank
     layout:
       Power Consumption:
@@ -217,9 +218,9 @@ data:
         style: row
         columns: 3
     quicklaunch:
-    searchDescription: true
-    hideInternetSearch: true
-    hideVisitURL: true
+      searchDescription: true
+      hideInternetSearch: true
+      hideVisitURL: true
   widgets.yaml: |
     - resources:
         backend: kubernetes
