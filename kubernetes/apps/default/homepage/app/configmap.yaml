@@ -147,7 +147,7 @@ data:
             href: https://prometheus.ismailbay.dev
             widget:
               type: prometheus
-              url: http://prometheus.observability
+              url: http://kube-prometheus-stack-prometheus.observability:9090
         - Cilium:
             icon: cilium.png
             href: https://hubble.ismailbay.dev
