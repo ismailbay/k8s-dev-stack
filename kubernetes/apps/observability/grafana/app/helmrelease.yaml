@@ -32,6 +32,9 @@ spec:
       existingSecret: grafana-admin-secret
     env:
       GF_EXPLORE_ENABLED: true
+      GF_FEATURE_TOGGLES_ENABLE: publicDashboards
+      GF_LOG_MODE: console
+      GF_NEWS_NEWS_FEED_ENABLED: false
       GF_SERVER_ROOT_URL: "https://grafana.${SECRET_DOMAIN}"
     grafana.ini:
       analytics:
@@ -164,7 +167,6 @@ spec:
         - hosts:
             - *host
     persistence:
-      enabled: true
-      storageClassName: openebs-hostpath
+      enabled: false
     testFramework:
       enabled: false
