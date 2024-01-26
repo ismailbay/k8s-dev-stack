@@ -23,8 +23,8 @@ spec:
   uninstall:
     keepHistory: false
   dependsOn:
-    - name: openebs
-      namespace: storage
+    - name: longhorn
+      namespace: longhorn-system
   values:
     deploymentStrategy:
       type: Recreate
