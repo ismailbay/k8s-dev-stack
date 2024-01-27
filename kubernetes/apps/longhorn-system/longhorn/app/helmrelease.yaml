@@ -23,22 +23,6 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    monitoring:
-      enabled: true
-      createPrometheusRules: true
-    defaultSettings:
-      defaultReplicaCount: 3
-      backupstorePollInterval: 0
-      createDefaultDiskLabeledNodes: true
-      restoreVolumeRecurringJobs: true
-      storageOverProvisioningPercentage: 100
-      storageMinimalAvailablePercentage: 1
-      guaranteedEngineManagerCPU: 20
-      guaranteedReplicaManagerCPU: 20
-      orphanAutoDeletion: true
-      concurrentAutomaticEngineUpgradePerNodeLimit: 3
-      defaultLonghornStaticStorageClass: longhorn
-      nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
     ingress:
       enabled: true
       ingressClassName: internal

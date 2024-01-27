@@ -90,9 +90,15 @@
         state: absent
       loop: ["kubectl", "crictl", "ctr"]
 
-    - name: Remove local storage path
-      ansible.builtin.file:
-        path: "/var/openebs/local"
+    - name: Unmount the partition
+      ansible.posix.mount:
+        path: /var/lib/longhorn
+        state: absent
+
+    - name: Wipe k8s dedicated data device
+      community.general.parted:
+        device: "{{ data_device }}"
+        number: 1
         state: absent
 
     - name: Reboot
