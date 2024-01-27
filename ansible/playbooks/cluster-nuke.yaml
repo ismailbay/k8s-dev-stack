@@ -90,6 +90,11 @@
         state: absent
       loop: ["kubectl", "crictl", "ctr"]
 
+    - name: Remove local storage path
+      ansible.builtin.file:
+        path: "/var/lib/longhorn/*"
+        state: absent
+
     - name: Unmount the partition
       ansible.posix.mount:
         path: /var/lib/longhorn
