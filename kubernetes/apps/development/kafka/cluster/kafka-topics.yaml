@@ -4,7 +4,7 @@ kind: KafkaTopic
 metadata:
   name: test-topic
   labels:
-    strimzi.io/cluster: ephemeral-cluster
+    strimzi.io/cluster: kafka-at-home
 spec:
   partitions: 1
   replicas: 3
