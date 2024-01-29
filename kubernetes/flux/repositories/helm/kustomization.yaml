@@ -22,5 +22,6 @@ resources:
   - ./postfinance.yaml
   - ./prometheus-community.yaml
   - ./stakater.yaml
+  - ./strimzi.yaml
   - ./weave-gitops.yaml
   - ./xenitab.yaml
