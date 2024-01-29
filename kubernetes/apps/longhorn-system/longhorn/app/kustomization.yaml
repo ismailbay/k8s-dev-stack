@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - ./helmrelease.yaml
   - ./snapshot.yaml
+  - ./storageclass-no-replication.yaml
