@@ -12,7 +12,7 @@ spec:
     - controller
   storage:
     type: persistent-claim
-    class: longhorn-no-replication # kafka replicates on its own
+    class: longhorn-strict-local-no-replication # kafka replicates on its own
     size: 10Gi
 ---
 apiVersion: kafka.strimzi.io/v1beta2
@@ -48,7 +48,7 @@ spec:
     # But it will be ignored when Kafka Node Pools are used
     storage:
       type: persistent-claim
-      class: longhorn-no-replication # kafka replicates on its own
+      class: longhorn-strict-local-no-replication # kafka replicates on its own
       size: 10Gi
   # The ZooKeeper section is required by the Kafka CRD schema while the UseKRaft feature gate is in alpha phase.
   # But it will be ignored when running in KRaft mode
