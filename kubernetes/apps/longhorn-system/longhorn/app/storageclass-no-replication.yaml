@@ -2,13 +2,13 @@
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
-  name: longhorn-no-replication
+  name: longhorn-strict-local-no-replication
 provisioner: driver.longhorn.io
 allowVolumeExpansion: true
 reclaimPolicy: Retain
 volumeBindingMode: Immediate
 parameters:
   numberOfReplicas: "1"
-  replicaAutoBalance: best-effort
+  dataLocality: "strict-local"
   staleReplicaTimeout: "30"
   fromBackup: ""
