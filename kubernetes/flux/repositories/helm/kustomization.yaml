@@ -9,6 +9,7 @@ resources:
   - ./coredns.yaml
   - ./csi-driver-nfs.yaml
   - ./csi-driver-smb.yaml
+  - ./democratic-csi.yaml
   - ./descheduler.yaml
   - ./external-dns.yaml
   - ./grafana.yaml
