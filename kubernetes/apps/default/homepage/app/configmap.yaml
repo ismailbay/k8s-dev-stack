@@ -44,7 +44,7 @@ data:
     mode: cluster
   services.yaml: |
     - Power Consumption:
-        - Server Room:
+        - Today:
             icon: mdi-meter-electric-outline
             href: https://hass.ibay.dev
             widget:
@@ -52,31 +52,13 @@ data:
               url: https://hass.ibay.dev
               key: "{{HOMEPAGE_VAR_HASS_API_TOKEN}}"
               custom:
-                - state: sensor.server_energy_power
-                  label: Now
                 - state: sensor.server_energy_today
-                  label: Today
-                - state: sensor.server_energy_yesterday
-                  label: Yesterday
-                - state: sensor.server_energy_total
-                  label: Total
-        - Office:
-            icon: mdi-meter-electric-outline
-            href: https://hass.ibay.dev
-            widget:
-              type: homeassistant
-              url: https://hass.ibay.dev
-              key: "{{HOMEPAGE_VAR_HASS_API_TOKEN}}"
-              custom:
-                - state: sensor.pc_energy_power
-                  label: Now
+                  label: Server Room
                 - state: sensor.pc_energy_today
-                  label: Today
-                - state: sensor.pc_energy_yesterday
-                  label: Yesterday
-                - state: sensor.pc_energy_total
-                  label: Total
-        - TV:
+                  label: Office
+                - state: sensor.tv_energy_today
+                  label: TV
+        - Yesterday:
             icon: mdi-meter-electric-outline
             href: https://hass.ibay.dev
             widget:
@@ -84,14 +66,12 @@ data:
               url: https://hass.ibay.dev
               key: "{{HOMEPAGE_VAR_HASS_API_TOKEN}}"
               custom:
-                - state: sensor.tv_energy_power
-                  label: Now
-                - state: sensor.tv_energy_today
-                  label: Today
+                - state: sensor.server_energy_yesterday
+                  label: Server Room
+                - state: sensor.pc_energy_yesterday
+                  label: Office
                 - state: sensor.tv_energy_yesterday
-                  label: Yesterday
-                - state: sensor.tv_energy_total
-                  label: Total
+                  label: TV
     - Infrastructure:
         - OpenWRT:
             href: http://192.168.1.1
@@ -233,7 +213,7 @@ data:
     layout:
       Power Consumption:
         style: row
-        columns: 3
+        columns: 2
       Infrastructure:
         style: row
         columns: 3
