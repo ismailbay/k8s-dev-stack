@@ -102,7 +102,7 @@ packages:
  - wget
 
 ssh_authorized_keys:
-  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKbJSmbCeDjS0o9ggGab+qvesi6zulkfwXv25pBIblT1 ismailbay@gmail.com
+  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKbJSmbCeDjS0o9ggGab+qvesi6zulkfwXv25pBIblT1
 
 runcmd:
   - sed -i 's/^#PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
@@ -115,7 +115,7 @@ runcmd:
 
 ```bash
 BASE_IMAGE=https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-generic-amd64.qcow2
-VM_ID=9002 # increase by 1 and repeat on the next node
+VM_ID=9000 # increase by 1 and repeat on the next node
 
 cd /tmp
 wget -O debian-cloudinit.qcow2 $BASE_IMAGE
