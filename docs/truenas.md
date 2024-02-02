@@ -34,10 +34,6 @@ In TrueNas under "System Settings -> Advanced"
 * einen neuen "ACME Certificate" zu diesem CSR hinzufügen
 * self-signed TrueNAS Zertifikat auf das neu erstellte Zertifikat ändern
 
-### Virtual Machines und Apps
-* Ubuntu mit Portainer hostet Gitea, in Zukunft vermutlich mehr
-* MinIO als True Charts App
-
 ### Potenzielle Verbesserungen
 
 - [ ] die TrueNAS Konfiguration auf Terraform migrieren

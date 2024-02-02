@@ -47,21 +47,22 @@ Der Fokus liegt auf Einfachheit. Da ich im Bereich Netzwerk noch ein Anfänger b
 
 ### PVE Cluster
 
-| IP                 | Service               |
-| ------------------ | --------------------- |
-| 192.168.20.10      | Zyxel GS1200-8        |
-| 192.168.20.50      | TrueNAS Scale         |
-| 192.168.20.51      | Gitea on TrueNAS      |
-| 192.168.20.52-99   | TrueNAS apps reserved |
-| 192.168.20.100     | pve-m720q-01          |
-| 192.168.20.101     | pve-m720q-02          |
-| 192.168.20.102     | pve-m720q-03          |
-| 192.168.20.103-109 | pve reserved          |
-| 192.168.20.110     | k8s-01                |
-| 192.168.20.111     | k8s-02                |
-| 192.168.20.112     | k8s-03                |
-| 192.168.20.113-129 | k8s reserved          |
-| 192.168.20.130     | k8s-gateway           |
-| 192.168.20.131     | ingress-controller    |
-| 192.168.20.131-253 | k8s services and apps |
-| 192.168.20.254     | kube_vip              |
+| IP                 | Service                |
+|--------------------|------------------------|
+| 192.168.20.10      | Zyxel GS1200-8         |
+| 192.168.20.50      | TrueNAS Scale          |
+| 192.168.20.51-99   | TrueNAS apps reserved  |
+| 192.168.20.100     | pve-m720q-01           |
+| 192.168.20.101     | pve-m720q-02           |
+| 192.168.20.102     | pve-m720q-03           |
+| 192.168.20.103-109 | pve reserved           |
+| 192.168.20.110     | k8s-01                 |
+| 192.168.20.111     | k8s-02                 |
+| 192.168.20.112     | k8s-03                 |
+| 192.168.20.113-129 | k8s reserved           |
+| 192.168.20.130     | k8s-gateway            |
+| 192.168.20.131     | reserviert für pi-hole |
+| 192.168.20.132     | nginx-external         |
+| 192.168.20.133     | nginx-internal         |
+| 192.168.20.131-253 | cilium LB pool         |
+| 192.168.20.254     | kube_vip               |

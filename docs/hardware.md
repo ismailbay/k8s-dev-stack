@@ -6,10 +6,10 @@
 
 ## TrueNAS Scale
 
-Dieser Server stellt Storage bereit und hostet einige VMs, wie Gitea und MinIO.
+Dieser Server stellt Storage bereit und hostet einige [Truecharts](https://truecharts.org) Apps wie Gitea, MinIO und Paperless.
 
 | Teil       | Modell                   |      € |
-| ---------- | ------------------------ | -----: |
+|------------|--------------------------|-------:|
 | Mainboard  | Fujitsu D3644-B          |    200 |
 | Cpu        | i3-8100 (used)           |     45 |
 | Ram        | 2 x 32 GB ECC DDR4-3200  |    280 |
@@ -23,10 +23,10 @@ Dieser Server stellt Storage bereit und hostet einige VMs, wie Gitea und MinIO.
 ## Proxmox Cluster
 
 | Host         | Modell       | RAM   | Boot Disk  | Storage                   |     € |
-| ------------ | ------------ | ----- | ---------- | ------------------------- | ----: |
-| pve-m720q-01 | Lenovo m720q | 16 GB | 256 GB SSD | 1 TB Samsung 980 NVMe     | ~ 120 |
+|--------------|--------------|-------|------------|---------------------------|------:|
+| pve-m720q-01 | Lenovo m720q | 32 GB | 256 GB SSD | 1 TB Samsung 980 NVMe     | ~ 120 |
 | pve-m720q-02 | Lenovo m720q | 16 GB | 256 GB SSD | 1 TB Samsung 980 Pro NVMe | ~ 120 |
-| pve-m720q-03 | Lenovo m720q | 8 GB  | 256 GB SSD | 1 TB Samsung 980 NVMe     | ~ 120 |
+| pve-m720q-03 | Lenovo m720q | 16 GB | 256 GB SSD | 1 TB Samsung 980 NVMe     | ~ 120 |
 
 ## Ausbau in Zukunft
 
