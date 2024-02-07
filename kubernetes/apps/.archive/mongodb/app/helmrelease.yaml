@@ -35,10 +35,6 @@ spec:
         io.cilium/lb-ipam-ips: "192.168.20.135"
       externalTrafficPolicy: Cluster
       type: LoadBalancer
-    externalAccess:
-      enabled: true
-      service:
-        type: LoadBalancer
     diagnosticMode:
       enabled: false
     backup:
