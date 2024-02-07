@@ -20,6 +20,9 @@ data:
         - kubesearch:
             - icon: kubernetes-dashboard.png
               href: https://kubesearch.dev
+        - IT-Tools:
+            - icon: it-tools-light.png
+              href: https://it-tools.tech
 
     - Reading:
         - Dev.to:
