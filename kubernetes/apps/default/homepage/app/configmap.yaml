@@ -23,6 +23,12 @@ data:
         - IT-Tools:
             - icon: it-tools-light.png
               href: https://it-tools.tech
+        - Upstash:
+            - icon: si-upstash
+              href: https://console.upstash.com/kafka
+        - Supabase:
+            - icon: si-supabase
+              href: https://supabase.com/dashboard/projects
 
     - Reading:
         - Dev.to:
