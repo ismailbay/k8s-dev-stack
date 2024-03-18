@@ -63,7 +63,7 @@ spec:
           http:
             port: 3000
     ingress:
-      main:
+      app:
         enabled: true
         className: internal
         hosts:
