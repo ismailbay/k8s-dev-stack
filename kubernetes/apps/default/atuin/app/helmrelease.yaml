@@ -105,7 +105,7 @@ spec:
             paths:
               - path: /
                 service:
-                  identifier: atuin
+                  identifier: app
                   port: http
         tls:
           - hosts:
