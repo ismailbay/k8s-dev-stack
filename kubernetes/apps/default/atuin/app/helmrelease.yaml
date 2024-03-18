@@ -25,7 +25,7 @@ spec:
     keepHistory: false
   values:
     controllers:
-      autin:
+      atuin:
         replicas: 1
         strategy: RollingUpdate
         annotations:
