@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.0.1/charts/library/common/values.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
@@ -25,7 +25,7 @@ spec:
     keepHistory: false
   values:
     controllers:
-      main:
+      autin:
         replicas: 1
         strategy: RollingUpdate
         annotations:
@@ -39,7 +39,7 @@ spec:
               - secretRef:
                   name: atuin-secret
         containers:
-          main:
+          app:
             image:
               repository: ghcr.io/atuinsh/atuin
               tag: 18.0.1@sha256:49df5708d7fc085acf76c7868f10f25fa7ba947c8a7d3354a97207ba69c85cc3
@@ -62,6 +62,16 @@ spec:
                 cpu: 10m
               limits:
                 memory: 256Mi
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 5
         pod:
           securityContext:
             runAsUser: 568
@@ -70,7 +80,8 @@ spec:
             fsGroup: 568
             fsGroupChangePolicy: OnRootMismatch
     service:
-      main:
+      app:
+        controller: atuin
         ports:
           http:
             port: *port
@@ -94,7 +105,7 @@ spec:
             paths:
               - path: /
                 service:
-                  name: main
+                  identifier: atuin
                   port: http
         tls:
           - hosts:
