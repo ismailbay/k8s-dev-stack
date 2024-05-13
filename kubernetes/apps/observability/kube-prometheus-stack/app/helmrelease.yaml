@@ -28,12 +28,33 @@ spec:
   dependsOn:
     - name: longhorn
       namespace: longhorn-system
+    - name: local-path-provisioner
+      namespace: storage
   values:
     crds:
       enabled: true
     cleanPrometheusOperatorObjectNames: true
     alertmanager:
-      enabled: false
+      ingress:
+        enabled: true
+        pathType: Prefix
+        ingressClassName: internal
+        hosts:
+          - &host alertmanager.${SECRET_DOMAIN}
+        tls:
+          - hosts:
+              - *host
+      alertmanagerSpec:
+        replicas: 3
+        useExistingSecret: true
+        configSecret: alertmanager-secret
+        storage:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: local-hostpath
+              resources:
+                requests:
+                  storage: 1Gi
     kube-state-metrics:
       metricLabelsAllowlist:
         - "deployments=[*]"
