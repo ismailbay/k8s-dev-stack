@@ -5,9 +5,4 @@ metadata:
   name: cluster-settings
   namespace: flux-system
 data:
-  TIMEZONE: "Europe/Vienna"
-  COREDNS_ADDR: "10.43.0.10"
-  KUBE_API_ADDR: "192.168.20.254"
-  CLUSTER_CIDR: "10.42.0.0/16"
-  SERVICE_CIDR: "10.43.0.0/16"
-  NODE_CIDR: "192.168.20.0/24"
+  SETTING_EXAMPLE: Global settings for your cluster go in this file, this file is NOT encrypted

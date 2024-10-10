@@ -1,4 +1,4 @@
-resource "proxmox_virtual_environment_vm" "debian_vm" {
+resource "proxmox_virtual_environment_vm" "talos_vm" {
   for_each = var.nodes
 
   name        = each.key
@@ -13,9 +13,6 @@ resource "proxmox_virtual_environment_vm" "debian_vm" {
   machine = "q35"
 
   initialization {
-    interface         = "ide2"
-    user_data_file_id = "local:snippets/cloudinit.yaml"
-
     ip_config {
       ipv4 {
         address = each.value.ip4_addr
@@ -26,7 +23,7 @@ resource "proxmox_virtual_environment_vm" "debian_vm" {
 
   cpu {
     cores = var.common.cores
-    type = "host"
+    type = "x86-64-v2-AES"
   }
 
   memory {
@@ -43,6 +40,8 @@ resource "proxmox_virtual_environment_vm" "debian_vm" {
 
   scsi_hardware = "virtio-scsi-single"
 
+  boot_order = ["ide3", "scsi0"]
+
   disk {
     datastore_id = "local-lvm"
     size         = var.common.disk0
@@ -54,10 +53,19 @@ resource "proxmox_virtual_environment_vm" "debian_vm" {
     file_format  = "raw"
   }
 
+  cdrom {
+    enabled = true
+    file_id = "nfs-iso:iso/talos.nocloud.1.8.1-amd64.iso"
+  }
+
   network_device {
     model       = "virtio"
     mac_address = each.value.macaddr
     bridge      = "vmbr0"
+  }
+
+  tpm_state {
+    version = "v2.0"
   }
 
   # nvme
@@ -76,10 +84,10 @@ resource "proxmox_virtual_environment_vm" "debian_vm" {
     pcie   = true
   }
 
-  clone {
-    vm_id     = each.value.clone_vm_id
-    node_name = each.value.clone_node_name
-  }
+  # clone {
+  #   vm_id     = each.value.clone_vm_id
+  #   node_name = each.value.clone_node_name
+  # }
 
   tablet_device = false
 
