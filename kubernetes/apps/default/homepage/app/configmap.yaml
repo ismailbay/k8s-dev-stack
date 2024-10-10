@@ -209,6 +209,7 @@ data:
 
   settings.yaml: |
     title: Home Dashboard
+    favicon: https://baydev.at/static/favicons/favicon-32x32.png
     theme: dark
     color: slate
     useEqualHeights: true
@@ -216,6 +217,13 @@ data:
     hideErrors: true
     hideVersion: true
     target: _blank
+    layout: 
+      Power Consumption:
+        style: row
+        columns: 4
+      Media:
+        style: row
+        columns: 4
     quicklaunch:
       searchDescription: true
       hideInternetSearch: true
