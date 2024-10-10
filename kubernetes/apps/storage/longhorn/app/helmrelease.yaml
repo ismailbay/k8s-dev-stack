@@ -23,9 +23,9 @@ spec:
       strategy: rollback
       retries: 3
   values:
-    monitoring:
-      enabled: true
-      createPrometheusRules: true
+    metrics:
+      serviceMonitor:
+        enabled: true
     defaultSettings:
       backupTarget: s3://longhorn-backup@eeur/
       backupTargetCredentialSecret: longhorn-secret
