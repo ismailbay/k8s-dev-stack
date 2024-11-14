@@ -6,7 +6,7 @@ metadata:
   name: postgres16
 spec:
   instances: 3
-  imageName: ghcr.io/cloudnative-pg/postgresql:16.4-46
+  imageName: ghcr.io/cloudnative-pg/postgresql:16.4-51
   primaryUpdateStrategy: unsupervised
   storage:
     size: 20Gi
@@ -26,7 +26,7 @@ spec:
   monitoring:
     enablePodMonitor: true
   backup:
-    retentionPolicy: 10d
+    retentionPolicy: 30d
     barmanObjectStore: &barmanObjectStore
       data:
         compression: bzip2
@@ -34,7 +34,7 @@ spec:
         compression: bzip2
         maxParallel: 8
       destinationPath: s3://cloudnativepg-backup/
-      endpointURL: https://8eb676fda8f1f5e5a5697f4eb75eb8d2.r2.cloudflarestorage.com/cloudnativepg-backup
+      endpointURL: https://8eb676fda8f1f5e5a5697f4eb75eb8d2.r2.cloudflarestorage.com/
       # Note: serverName version needs to be incremented
       # when recovering from an existing cnpg cluster
       serverName: &currentCluster postgres16-v2
@@ -49,8 +49,8 @@ spec:
   # cluster when recovering from an existing cnpg cluster
   # bootstrap:
   #   recovery:
-  #     source: &previousCluster postgres16-v1
-  # Note: externalClusters is needed when recovering from an existing cnpg cluster
+  #     source: &previousCluster postgres16-v2
+  # # Note: externalClusters is needed when recovering from an existing cnpg cluster
   # externalClusters:
   #   - name: *previousCluster
   #     barmanObjectStore:
