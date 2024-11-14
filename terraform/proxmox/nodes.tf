@@ -55,7 +55,7 @@ resource "proxmox_virtual_environment_vm" "talos_vm" {
 
   cdrom {
     enabled = true
-    file_id = "nfs-iso:iso/talos.nocloud.1.8.1-amd64.iso"
+    file_id = "nfs-iso:iso/talos.nocloud.1.8.3-amd64.iso"
   }
 
   network_device {
