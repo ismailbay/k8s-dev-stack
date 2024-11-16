@@ -18,3 +18,5 @@ resources:
   - ./k8s-gateway.yaml
   - ./longhorn.yaml
   - ./grafana.yaml
+  - ./strimzi.yaml
+  - ./emberstack.yaml
