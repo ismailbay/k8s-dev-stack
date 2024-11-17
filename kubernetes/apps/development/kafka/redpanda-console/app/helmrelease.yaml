@@ -1,0 +1,49 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: redpanda
+  namespace: kafka
+spec:
+  interval: 60m
+  chart:
+    spec:
+      chart: console
+      version: 0.7.30
+      interval: 60m
+      sourceRef:
+        kind: HelmRepository
+        name: redpanda-data
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    ingress:
+      enabled: true
+      className: internal
+      hosts:
+        - host: kafka-ui.ibay.dev
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
+      tls:
+        - secretName: ibay-dev-production-tls
+          hosts:
+            - kafka-ui.ibay.dev
+    console:
+      config:
+        kafka: 
+          brokers:
+            - kafka-0:9092
+            - kafka-1:9092
+            - kafka-2:9092
+          clientId: redpanda-console
