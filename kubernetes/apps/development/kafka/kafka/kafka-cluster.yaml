@@ -61,8 +61,7 @@ spec:
               - podAffinityTerm:
                   labelSelector:
                     matchLabels:
-                      strimzi.io/cluster:
-                      strimzi.io/name:
+                      strimzi.io/cluster: kafka-at-home
                   topologyKey: topology.kubernetes.io/zone
                 weight: 100
     config:
