@@ -39,6 +39,9 @@ nodes:
         mtu: 1500
         vip:
           ip: "192.168.20.254"
+    nodeLabels:
+      "topology.kubernetes.io/region": "m720q"
+      "topology.kubernetes.io/zone": "m720q-1"
   - hostname: "talos-02"
     ipAddress: "192.168.20.111"
     installDisk: "/dev/sda"
@@ -56,6 +59,9 @@ nodes:
         mtu: 1500
         vip:
           ip: "192.168.20.254"
+    nodeLabels:
+      "topology.kubernetes.io/region": "m720q"
+      "topology.kubernetes.io/zone": "m720q-2"
   - hostname: "talos-03"
     ipAddress: "192.168.20.112"
     installDisk: "/dev/sda"
@@ -73,7 +79,9 @@ nodes:
         mtu: 1500
         vip:
           ip: "192.168.20.254"
-
+    nodeLabels:
+      "topology.kubernetes.io/region": "m720q"
+      "topology.kubernetes.io/zone": "m720q-3"
 # Global patches
 patches:
   - # Force nameserver
