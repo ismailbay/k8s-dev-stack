@@ -26,6 +26,8 @@ spec:
   kafka:
     version: 3.8.0
     metadataVersion: 3.8-IV0
+    rack:
+      topologyKey: topology.kubernetes.io/zone
     listeners:
       - name: plain
         port: 9092
@@ -52,6 +54,7 @@ spec:
             certificate: tls.crt
             key: tls.key
     config:
+      replica.selector.class: org.apache.kafka.common.replica.RackAwareReplicaSelector
       offsets.topic.replication.factor: 3
       transaction.state.log.replication.factor: 3
       transaction.state.log.min.isr: 2
