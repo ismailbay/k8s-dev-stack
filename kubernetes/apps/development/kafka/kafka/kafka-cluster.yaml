@@ -53,6 +53,18 @@ spec:
             secretName: "ibay-dev-production-tls"
             certificate: tls.crt
             key: tls.key
+    template:
+      pod:
+        affinity:
+          podAntiAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+              - podAffinityTerm:
+                  labelSelector:
+                    matchLabels:
+                      strimzi.io/cluster:
+                      strimzi.io/name:
+                  topologyKey: topology.kubernetes.io/zone
+                weight: 100
     config:
       replica.selector.class: org.apache.kafka.common.replica.RackAwareReplicaSelector
       offsets.topic.replication.factor: 3
