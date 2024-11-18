@@ -21,3 +21,5 @@ resources:
   - ./strimzi.yaml
   - ./emberstack.yaml
   - ./redpanda-data.yaml
+  - ./kyverno.yaml
+
