@@ -1,0 +1,35 @@
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kyverno.io/clusterpolicy_v1.json
+apiVersion: kyverno.io/v2beta1
+kind: ClusterPolicy
+metadata:
+  name: mutate-pod-binding
+  annotations:
+    pod-policies.kyverno.io/autogen-controllers: none
+    policies.kyverno.io/title: Mutate Pod Binding
+    policies.kyverno.io/category: Other
+    policies.kyverno.io/subject: Pod
+    policies.kyverno.io/description: >-
+      Add topology.kubernetes.io/zone label to Pods after Scheduling
+spec:
+  background: false
+  rules:
+    - name: topology-zone
+      match:
+        any:
+        - resources:
+            kinds:
+            - Pod/binding
+      context:
+      - name: node
+        variable:
+          jmesPath: request.object.target.name
+          default: ''
+      - name: zone
+        apiCall:
+          urlPath: "/api/v1/nodes/{{node}}"
+          jmesPath: "metadata.labels.\"topology.kubernetes.io/zone\" || 'empty'"
+      mutate:
+        patchStrategicMerge:
+          metadata:
+            annotations:
+              topology.kubernetes.io/zone: "{{ zone }}"
