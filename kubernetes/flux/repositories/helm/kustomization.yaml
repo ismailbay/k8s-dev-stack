@@ -22,4 +22,4 @@ resources:
   - ./emberstack.yaml
   - ./redpanda-data.yaml
   - ./kyverno.yaml
-
+  - ./weaveworks.yaml
