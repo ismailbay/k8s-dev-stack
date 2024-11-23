@@ -33,6 +33,13 @@ spec:
         reloader.stakater.com/auto: "true"
     spec:
       replicas: 2
+      volumeClaimTemplates:
+        storageClassName: openebs-hostpath
+        resources:
+          requests:
+            storage: 200Mi
+        accessModes:
+        - ReadWriteOnce
       envFrom:
         - secretRef:
             name: emqx-secret
