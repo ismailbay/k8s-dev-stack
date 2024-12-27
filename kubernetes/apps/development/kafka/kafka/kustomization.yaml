@@ -4,3 +4,5 @@ kind: Kustomization
 resources:
   - ./kafka-cluster.yaml
   - ./topics.yaml
+  - ./metrics-configmap.yaml
+  - ./podmonitor.yaml
