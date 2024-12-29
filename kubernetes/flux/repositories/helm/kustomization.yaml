@@ -24,3 +24,4 @@ resources:
   - ./kyverno.yaml
   - ./weaveworks.yaml
   - ./emqx.yaml
+  - ./cloudtooling.yaml
