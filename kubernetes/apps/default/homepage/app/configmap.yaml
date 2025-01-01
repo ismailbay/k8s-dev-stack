@@ -9,7 +9,7 @@ data:
   bookmarks.yaml: |
     - Development:
         - Github:
-            - href: https://github.com/ibay
+            - href: https://github.com/ismailbay
               icon: github-light.png
         - Devhints:
             - href: https://devhints.io
@@ -52,39 +52,7 @@ data:
   kubernetes.yaml: |
     mode: cluster
   services.yaml: |
-    - Power Consumption:
-      - Today:
-        icon: mdi-meter-electric-outline
-        href: https://hass.ibay.dev
-        widget:
-          type: homeassistant
-          url: https://hass.ibay.dev
-          key: "{{HOMEPAGE_VAR_HASS_API_TOKEN}}"
-          custom:
-            - state: sensor.server_energy_today
-              label: Server Room
-            - state: sensor.pc_energy_today
-              label: Office
-            - state: sensor.tv_energy_today
-              label: TV
-      - Yesterday:
-        icon: mdi-meter-electric-outline
-        href: https://hass.ibay.dev
-        widget:
-          type: homeassistant
-          url: https://hass.ibay.dev
-          key: "{{HOMEPAGE_VAR_HASS_API_TOKEN}}"
-          custom:
-            - state: sensor.server_energy_yesterday
-              label: Server Room
-            - state: sensor.pc_energy_yesterday
-              label: Office
-            - state: sensor.tv_energy_yesterday
-              label: TV
     - Infrastructure:
-      - OpenWRT:
-          href: http://192.168.1.1
-          icon: openwrt.png
       - PiHole:
           icon: pi-hole.png
           href: http://192.168.1.2/admin
@@ -217,10 +185,7 @@ data:
     hideErrors: true
     hideVersion: true
     target: _blank
-    layout: 
-      Power Consumption:
-        style: row
-        columns: 4
+    layout:
       Media:
         style: row
         columns: 4
