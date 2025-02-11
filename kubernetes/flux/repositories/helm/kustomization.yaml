@@ -26,3 +26,4 @@ resources:
   - ./emqx.yaml
   - ./cloudtooling.yaml
   - ./node-feature-discovery.yaml
+  - ./intel.yaml
