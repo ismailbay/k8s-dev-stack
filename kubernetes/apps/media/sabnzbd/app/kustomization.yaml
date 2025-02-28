@@ -5,3 +5,12 @@ kind: Kustomization
 resources:
   - ./secret.sops.yaml
   - ./helmrelease.yaml
+configMapGenerator:
+  - name: sabnzbd-scripts
+    files:
+      - Clean.py=./scripts/Clean.py
+      - replace_for.py=./scripts/replace_for.py
+generatorOptions:
+  disableNameSuffixHash: true
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled

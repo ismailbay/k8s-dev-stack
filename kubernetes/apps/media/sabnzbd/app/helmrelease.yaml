@@ -108,6 +108,12 @@ spec:
         retain: true
         globalMounts:
           - path: /config
+      scripts:
+        type: configMap
+        name: sabnzbd-scripts
+        defaultMode: 0775
+        globalMounts:
+          - readOnly: true
       downloads:
         enabled: true
         type: nfs
