@@ -114,6 +114,7 @@ spec:
         defaultMode: 0775
         globalMounts:
           - readOnly: true
+          - path: /config/scripts
       downloads:
         enabled: true
         type: nfs
