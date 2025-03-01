@@ -81,10 +81,10 @@ spec:
               requests:
                 gpu.intel.com/i915: 1
                 cpu: 10m
-                memory: 512Mi
+                memory: 2Gi
               limits:
                 gpu.intel.com/i915: 1
-                memory: 10Gi
+                memory: 8Gi
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
