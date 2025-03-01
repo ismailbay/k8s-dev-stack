@@ -38,12 +38,12 @@ spec:
             env:
               SABNZBD__PORT: &port 80
               SABNZBD__HOST_WHITELIST_ENTRIES: >-
-                sabnzbd-migrated,
-                sabnzbd-migrated.media,
-                sabnzbd-migrated.media.svc,
-                sabnzbd-migrated.media.svc.cluster,
-                sabnzbd-migrated.media.svc.cluster.local,
-                sabnzbd-migrated.ibay.dev
+                sabnzbd,
+                sabnzbd.media,
+                sabnzbd.media.svc,
+                sabnzbd.media.svc.cluster,
+                sabnzbd.media.svc.cluster.local,
+                sabnzbd.ibay.dev
               TZ: ${TIMEZONE}
             envFrom:
               - secretRef:
@@ -93,7 +93,7 @@ spec:
       app:
         className: internal
         hosts:
-          - host: sabnzbd-migrated.ibay.dev
+          - host: sabnzbd.ibay.dev
             paths:
               - path: /
                 service:

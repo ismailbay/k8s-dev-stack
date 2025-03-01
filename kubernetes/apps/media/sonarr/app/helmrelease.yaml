@@ -88,7 +88,7 @@ spec:
       app:
         className: internal
         hosts:
-          - host: sonarr-migrated.ibay.dev
+          - host: sonarr.ibay.dev
             paths:
               - path: /
                 service:

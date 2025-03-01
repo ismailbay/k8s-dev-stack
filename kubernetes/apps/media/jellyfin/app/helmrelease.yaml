@@ -105,7 +105,7 @@ spec:
         enabled: true
         className: internal
         hosts:
-          - host: &host jellyfin-migrated.ibay.dev
+          - host: &host jellyfin.ibay.dev
             paths:
               - path: /
                 service:
