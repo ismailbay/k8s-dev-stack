@@ -3,10 +3,10 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: postgres16
+  name: postgres17
 spec:
   instances: 3
-  imageName: ghcr.io/cloudnative-pg/postgresql:16.4-51
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.4
   primaryUpdateStrategy: unsupervised
   storage:
     size: 20Gi
@@ -23,10 +23,14 @@ spec:
       cpu: 500m
     limits:
       memory: 4Gi
+  affinity:
+    enablePodAntiAffinity: true
+    topologyKey: kubernetes.io/hostname
+    podAntiAffinityType: required
   monitoring:
     enablePodMonitor: true
   backup:
-    retentionPolicy: 30d
+    retentionPolicy: 7d
     barmanObjectStore: &barmanObjectStore
       data:
         compression: bzip2
@@ -37,7 +41,7 @@ spec:
       endpointURL: https://8eb676fda8f1f5e5a5697f4eb75eb8d2.r2.cloudflarestorage.com/
       # Note: serverName version needs to be incremented
       # when recovering from an existing cnpg cluster
-      serverName: &currentCluster postgres16-v2
+      serverName: &currentCluster postgres17-001
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-secret
@@ -49,7 +53,7 @@ spec:
   # cluster when recovering from an existing cnpg cluster
   # bootstrap:
   #   recovery:
-  #     source: &previousCluster postgres16-v2
+  #     source: &previousCluster postgres17-001
   # # Note: externalClusters is needed when recovering from an existing cnpg cluster
   # externalClusters:
   #   - name: *previousCluster
