@@ -93,7 +93,7 @@ spec:
       app:
         className: internal
         hosts:
-          - host: sabnzbd.ibay.dev
+          - host: downloads.ibay.dev
             paths:
               - path: /
                 service:

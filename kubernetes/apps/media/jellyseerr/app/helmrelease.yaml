@@ -82,7 +82,7 @@ spec:
       app:
         className: internal
         hosts:
-          - host: jellyseerr.ibay.dev
+          - host: requests.ibay.dev
             paths:
               - path: /
                 service:
